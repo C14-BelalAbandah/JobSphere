@@ -1,7 +1,7 @@
 const mongose = require("mongoose");
 
 mongose
-  .connect("mongodb://localhost:27017//Project#4")
+  .connect(process.env.DB_URL)
   .then((result) => {
     console.log("DB is Ready");
   })
