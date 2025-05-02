@@ -4,6 +4,4 @@ const bcrypt = require("bcrypt");
 const register = (req, res) => {};
 const login = (req, res) => {};
 
-
-
-module.exports= {register,login}
+module.exports = { register, login };

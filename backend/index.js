@@ -12,12 +12,14 @@ app.use(express.json());
 const usersRouter= require("./routes/usersRouter")
 const jobsRouter= require("./routes/jobsRouter")
 const rolesRouter= require("./routes/rolesRouter")
+const applicationsRouter= require("./routes/applicationsRouter")
 
 
 // Handles any other endpoints [unassigned - endpoints]
-app.use("users",usersRouter)
-app.use("jobs",jobsRouter)
-app.use("roles",rolesRouter)
+app.use("/users",usersRouter)
+app.use("/jobs",jobsRouter)
+app.use("/roles",rolesRouter)
+app.use("/application",applicationsRouter)
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 
 app.listen(PORT, () => {

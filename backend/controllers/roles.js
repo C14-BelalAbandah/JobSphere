@@ -1,5 +1,7 @@
-const rolesModel= require("../models/roleSchema")
+const rolesModel = require("../models/roleSchema");
 
-const createRole= (req,res)=>{}
+const createRole = (req, res) => {
 
-module.exports= {createRole}
+};
+
+module.exports = { createRole };

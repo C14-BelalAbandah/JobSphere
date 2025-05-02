@@ -7,6 +7,6 @@ const jobSchema = new mongoose.Schema({
   location: { type: String, required: true },
 });
 
-const model= mongoose.model ("jobs", jobSchema)
+const model = mongoose.model("jobs", jobSchema);
 
-module.exports= model
+module.exports = model;
