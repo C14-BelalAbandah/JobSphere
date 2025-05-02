@@ -1,7 +1,7 @@
 const usersModel = require("../models/usersScema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const  generateToken  = require("../jwt");
+const generateToken = require("../jwt");
 
 const register = (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -75,8 +75,8 @@ const login = (req, res) => {
       }
     })
     .catch((error) => {
-        console.log(error);
-        
+      console.log(error);
+
       res.status(501).json({
         data: error,
         message: "Error in login",
