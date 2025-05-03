@@ -1,6 +1,7 @@
 const { populate } = require("../models/applicationSchema");
 const jobsModel = require("../models/jobsSchema");
-
+const applicationModel = require("../models/applicationSchema");
+const { application } = require("express");
 const getAllJobs = (req, res) => {
   jobsModel
     .find({})
@@ -122,4 +123,54 @@ const removeJob = (req, res) => {
     });
 };
 
-module.exports = { getAllJobs, addJob, editJob, removeJob };
+const newApplication = (req, res) => {
+  const { firstName, lastName, email, education } = req.body;
+  const userId = req.token.userId;
+  const jobId = req.params.jobId;
+
+  const addApplication = new applicationModel({
+    firstName,
+    lastName,
+    email,
+    education,
+    userId,
+    jobId,
+  });
+  addApplication
+    .save()
+    .then((result) => {
+      console.log(result);
+
+      console.log(result.id);
+      
+      jobsModel
+        .findOneAndUpdate(
+          { _id: jobId },
+          { $push: { applications: result.id } },
+          { new: true }
+        )
+        .populate("applications")
+        .then((result) => {
+          res.status(201).json({
+            data: result,
+            message: "Your application was submitted successfully",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          
+          res.status(501).json({
+            data: error,
+            message: "Error in adding the application in jobs page",
+          });
+        });
+    })
+    .catch((error) => {
+      res.status(501).json({
+        data: error,
+        message: "Error in submitting the application",
+      });
+    });
+};
+
+module.exports = { getAllJobs, addJob, editJob, removeJob, newApplication };

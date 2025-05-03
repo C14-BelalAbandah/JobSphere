@@ -6,7 +6,8 @@ const applicationSchema= new mongoose.Schema({
     email: {type:String, required: true},
     education:{type:String, required: true},
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "users"},
-    jobId: {type: mongoose.Schema.Types.ObjectId ,ref: "jobs"}
+    jobId: {type: mongoose.Schema.Types.ObjectId ,ref: "jobs"},
+    
 })
 
 
