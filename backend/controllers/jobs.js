@@ -85,6 +85,40 @@ const editJob = (req, res) => {
       });
     });
 };
-const removeJob = (req, res) => {};
+const removeJob = (req, res) => {
+  const jobId = req.params.id;
+  const modifierId = req.token.userId;
+  jobsModel
+    .findById(jobId)
+    .populate("jobPoster", "_id")
+    .then((result) => {
+      if (result.jobPoster._id.toString() === modifierId) {
+        jobsModel
+          .findOneAndDelete({ _id: jobId })
+          .then((result) => {
+            res.status(200).json({
+              data: result,
+              message: "the job has been modified successfully",
+            });
+          })
+          .catch((error) => {
+            res.status(501).json({
+              data: error,
+              message: "error in modifying the job",
+            });
+          });
+      } else {
+        res.status(501).json({
+          message: "you are not allowed to remove this job",
+        });
+      }
+    })
+    .catch((error) => {
+      res.status(404).json({
+        data: error,
+        message: "error in finding the job",
+      });
+    });
+};
 
 module.exports = { getAllJobs, addJob, editJob, removeJob };
