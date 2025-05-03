@@ -11,7 +11,7 @@ const {
 
 jobsRouter.get("/", getAllJobs);
 jobsRouter.post("/", authentication,authorization("ADD_POST"),addJob);
-jobsRouter.put("/:id", editJob);
+jobsRouter.put("/:id",authentication,authorization("ADD_POST"), editJob);
 jobsRouter.delete("/:id", removeJob);
 
 module.exports = jobsRouter;
