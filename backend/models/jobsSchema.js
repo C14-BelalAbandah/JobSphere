@@ -1,3 +1,4 @@
+const { application } = require("express");
 const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema({
@@ -5,7 +6,8 @@ const jobSchema = new mongoose.Schema({
   description: { type: String, required: true },
   requirements: [{ type: String, required: true }],
   location: { type: String, required: true },
-  jobPoster: {type:mongoose.Schema.Types.ObjectId,ref: "users"}
+  jobPoster: {type:mongoose.Schema.Types.ObjectId,ref: "users"},
+
 });
 
 const model = mongoose.model("jobs", jobSchema);

@@ -1,3 +1,4 @@
+const { populate } = require("../models/applicationSchema");
 const jobsModel = require("../models/jobsSchema");
 
 const getAllJobs = (req, res) => {

@@ -20,7 +20,7 @@ const applicationsRouter = require("./routes/applicationsRouter");
 app.use("/users", usersRouter);
 app.use("/jobs", jobsRouter);
 app.use("/roles", rolesRouter);
-app.use("/application", applicationsRouter);
+app.use("/applications", applicationsRouter);
 app.use("*", (req, res) => res.status(404).json("NO content at this path"));
 
 app.listen(PORT, () => {
