@@ -1,4 +1,36 @@
 .App {
   text-align: center;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  border-bottom: solid 1px gray;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 0;
+}
 
+.headerPartOne,
+.headerPartTwo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 150px;
+}
+
+.title,
+.jobsIcon {
+  font-size: xx-large;
+}
+.loginIcon,
+.registerIcon {
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.jobsIcon {
+  cursor: pointer;
 }

@@ -2,6 +2,7 @@ const { populate } = require("../models/applicationSchema");
 const jobsModel = require("../models/jobsSchema");
 const applicationModel = require("../models/applicationSchema");
 const { application } = require("express");
+
 const getAllJobs = (req, res) => {
   jobsModel
     .find({})
@@ -128,70 +129,100 @@ const newApplication = (req, res) => {
   const userId = req.token.userId;
   const jobId = req.params.jobId;
 
-  const addApplication = new applicationModel({
-    firstName,
-    lastName,
-    email,
-    education,
-    userId,
-    jobId,
-  });
-  addApplication
-    .save()
+  jobsModel
+    .findById(jobId)
+    .populate("applications")
     .then((result) => {
-      console.log(result);
+      const appliedUsersIdArray = result.applications.map((ele) => {
+        return ele.userId.toString();
+      });
 
-      console.log(result.id);
-      
-      jobsModel
-        .findOneAndUpdate(
-          { _id: jobId },
-          { $push: { applications: result.id } },
-          { new: true }
-        )
-        .populate("applications")
-        .then((result) => {
-          res.status(201).json({
-            data: result,
-            message: "Your application was submitted successfully",
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          
-          res.status(501).json({
-            data: error,
-            message: "Error in adding the application in jobs page",
-          });
+      if (appliedUsersIdArray.includes(userId)) {
+        res.status(501).json({
+          message: "You already applied for this jobs",
         });
+      } else {
+        const addApplication = new applicationModel({
+          firstName,
+          lastName,
+          email,
+          education,
+          userId,
+          jobId,
+        });
+        addApplication
+          .save()
+          .then((result) => {
+            console.log(result);
+
+            console.log(result.id);
+
+            jobsModel
+              .findOneAndUpdate(
+                { _id: jobId },
+                { $push: { applications: result.id } },
+                { new: true }
+              )
+              .populate("applications")
+              .then((result) => {
+                res.status(201).json({
+                  data: result,
+                  message: "Your application was submitted successfully",
+                });
+              })
+              .catch((error) => {
+                console.log(error);
+
+                res.status(501).json({
+                  data: error,
+                  message: "Error in adding the application in jobs page",
+                });
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+
+            res.status(501).json({
+              data: error,
+              message: "Error in submitting the application",
+            });
+          });
+      }
     })
     .catch((error) => {
       res.status(501).json({
         data: error,
-        message: "Error in submitting the application",
+        message: "Error in getting the job",
       });
     });
 };
 
-const getJobByPosterId= (req,res)=>{
- const jobPosterId= req.params.jobPosterId
- jobsModel
- .find({jobPoster:jobPosterId})
- .populate("jobPoster","firstName")
- .then((result)=>{
-  res.status(201).json({
-    data: result,
-    message: "Your Jobs",
-  });
- })
- .catch((error)=>{
-  console.log(error);
-  
-  res.status(404).json({
-    data: error,
-    message: "Error in getting job",
-  });
- })
-}
+const getJobByPosterId = (req, res) => {
+  const jobPosterId = req.params.jobPosterId;
+  jobsModel
+    .find({ jobPoster: jobPosterId })
+    .populate("jobPoster", "firstName")
+    .then((result) => {
+      res.status(201).json({
+        data: result,
+        message: "Your Jobs",
+      });
+    })
+    .catch((error) => {
+      console.log(error);
 
-module.exports = { getAllJobs, addJob, editJob, removeJob, newApplication,getJobByPosterId };
+      res.status(404).json({
+        data: error,
+        message: "Error in getting job",
+      });
+    });
+};
+
+module.exports = {
+  getAllJobs,
+  addJob,
+  editJob,
+  removeJob,
+  newApplication,
+  getJobByPosterId,
+};
