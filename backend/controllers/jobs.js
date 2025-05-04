@@ -173,4 +173,25 @@ const newApplication = (req, res) => {
     });
 };
 
-module.exports = { getAllJobs, addJob, editJob, removeJob, newApplication };
+const getJobByPosterId= (req,res)=>{
+ const jobPosterId= req.params.jobPosterId
+ jobsModel
+ .find({jobPoster:jobPosterId})
+ .populate("jobPoster","firstName")
+ .then((result)=>{
+  res.status(201).json({
+    data: result,
+    message: "Your Jobs",
+  });
+ })
+ .catch((error)=>{
+  console.log(error);
+  
+  res.status(404).json({
+    data: error,
+    message: "Error in getting job",
+  });
+ })
+}
+
+module.exports = { getAllJobs, addJob, editJob, removeJob, newApplication,getJobByPosterId };

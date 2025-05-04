@@ -7,7 +7,8 @@ const {
   addJob,
   editJob,
   removeJob,
-  newApplication
+  newApplication,
+  getJobByPosterId
 } = require("../controllers/jobs");
 
 jobsRouter.get("/", getAllJobs);
@@ -15,6 +16,8 @@ jobsRouter.post("/", authentication,authorization("ADD_POST"),addJob);
 jobsRouter.put("/:id",authentication,authorization("ADD_POST"), editJob);
 jobsRouter.delete("/:id",authentication,authorization("ADD_POST"), removeJob);
 jobsRouter.post("/:jobId", authentication,newApplication);
+jobsRouter.get("/:jobPosterId", authentication,getJobByPosterId);
+
 
 
 module.exports = jobsRouter;
