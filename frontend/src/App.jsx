@@ -25,9 +25,12 @@ const App = () => {
         </div>
         <div className="headerPartTwo">
           {!loginToggle && (
-            <button className="loginIcon"  onClick={() => {
-              navigate("login");
-            }}>
+            <button
+              className="loginIcon"
+              onClick={() => {
+                navigate("login");
+              }}
+            >
               {" "}
               <svg
                 className="iconOfLogin"
@@ -82,6 +85,7 @@ const App = () => {
           setRigisterToggle,
           allJobs,
           setAllJobs,
+          
         }}
       >
         <Routes>

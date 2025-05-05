@@ -36,3 +36,9 @@
   margin-bottom: 5px;
   margin-left: 10px;
 }
+
+.newToJobsphereRegister{
+    font-size: large;
+    color:rgb(4, 4, 185) ;
+    cursor: pointer;
+}
