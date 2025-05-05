@@ -5,7 +5,7 @@ const generateToken = require("../jwt");
 
 const register = (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  if (req.body.role === "recruiter" || req.body.role==="") {
+  if (req.body.role === "recruiter" || req.body.role === "") {
     role = "6814e3dd770948ef6e8a7eb0";
   } else if (req.body.role === "job seeker") {
     role = "6814e419770948ef6e8a7eb2";
@@ -19,34 +19,33 @@ const register = (req, res) => {
   });
 
   console.log(req.body.role);
-  usersModel.find({email:email}).
-  then((result)=>{
-  if(result.length===1){
-    res.status(500).json({
-      message: "The Email is already existed",
-    });
-  }else{
-    newUser
-    .save()
+  usersModel
+    .find({ email: email })
     .then((result) => {
-      res.status(201).json({
-        data: result,
-        message: "user has been added",
-      });
+      if (result.length === 1) {
+        res.status(500).json({
+          message: "The Email is already existed",
+        });
+      } else {
+        newUser
+          .save()
+          .then((result) => {
+            res.status(201).json({
+              data: result,
+              message: "user has been added",
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({
+              data: error,
+              message: "Registration Failed",
+            });
+          });
+      }
     })
     .catch((error) => {
-      res.status(500).json({
-        data: error,
-        message: "Registration Failed",
-      });
+      console.log(error);
     });
-  }
-  })
-  .catch((error)=>{
-console.log(error);
-
-  })
-  
 };
 
 const getUsers = (req, res) => {
@@ -75,22 +74,30 @@ const login = (req, res) => {
       const token = generateToken(result);
       const hashedPassword = result.password;
       const isMatch = bcrypt.compare(password, hashedPassword);
-      if (!isMatch) {
-        res.status(403).json({
-          data: error,
-          message: "Email or password is incorrect",
+      console.log("isMatch", isMatch);
+      isMatch
+        .then((isMatch) => {
+          if (!isMatch) {
+            res.status(403).json({
+              message: "Email or password is incorrect",
+            });
+          } else {
+            res.status(200).json({
+              data: result,
+              message: "Logged in successfully",
+              token: token,
+            });
+          }
+        })
+        .catch((error) => {
+          res.status(501).json({
+            data: error,
+            message: "Error in login",
+          });
         });
-      } else {
-        res.status(200).json({
-          data: result,
-          message: "Logged in successfully",
-          token: token,
-        });
-      }
     })
     .catch((error) => {
       console.log(error);
-
       res.status(501).json({
         data: error,
         message: "Error in login",

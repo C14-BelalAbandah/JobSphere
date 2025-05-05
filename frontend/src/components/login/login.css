@@ -1,0 +1,38 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+}
+.loginTitle {
+  font-size: x-large;
+  font-weight: bold;
+}
+.loginButton {
+  display: flex;
+  align-self: center;
+  background-color: rgb(4, 4, 185);
+  color: white;
+  font-size: large;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.loginFailed {
+  border: solid 1px white;
+  border-radius: 10px;
+  background-color: rgb(188, 58, 58);
+  font-size: large;
+  padding: 13px;
+  padding-right: 103px;
+}
+
+.emailText,
+.passwordText {
+  display: flex;
+  align-self: start;
+  font-size: large;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
