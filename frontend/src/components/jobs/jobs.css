@@ -32,6 +32,26 @@
   font-size: large;
   border-bottom: solid 1px black;
 }
+.jobsPage{
+  display: flex;
+  flex-direction: column;
+ 
+  
+}
+.searchBar{
+  display: flex;
+  margin-top: 35px;
+  padding: 20px;
+ border-radius: 20px;
+ width: 55%;
+ align-self: center;
+
+}
+
+.searchBar::placeholder{
+  text-align: center;
+  font-size: large;
+}
 
 .allJobsAndJobDetails {
   display: flex;

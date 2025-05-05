@@ -7,6 +7,7 @@ function jobs() {
   const [allJobs, setAllJobs] = useState([]);
   const [jobDetails, setJobDetails] = useState(false);
   const [jobIndex, setJobIndex] = useState(0);
+  const [jobTitle, setJobTitle] = useState("")
 
   useEffect(() => {
     axios
@@ -20,8 +21,30 @@ function jobs() {
       console.log(error);
       });
   }, []);
+/*
+  useEffect(()=>{
+axios.get(`http://localhost:5000/jobs/jobByTitle/${jobTitle}`,{
+  headers:{
+    authorization: `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE1MDVmM2YwZGNlZDExMDZkNGFiNTYiLCJyb2xlIjp7Il9pZCI6IjY4MTRlM2RkNzcwOTQ4ZWY2ZThhN2ViMCIsInJvbGUiOiJyZWNydWl0ZXIiLCJwZXJtaXNzaW9ucyI6WyJBRERfUE9TVCIsIlNFRV9BUFBMSUNBVElPTlMiLCJTRUVfUE9TVFMiXSwiX192IjowfSwiaWF0IjoxNzQ2MjE0MDAwLCJleHAiOjE3NDY4MTg4MDB9.SeTYCLORuj9Nwvs4rzH_FWudCZId5lFqryClVOHNQM0`
+  }
+})
+.then((result)=>{
+ console.log(result.data);
+ 
+})
+.catch((error)=>{
+console.log("error: ",error);
+
+})
+  },[])
+  */
   return (
-    <div className="allJobsAndJobDetails">
+   <div className="jobsPage">
+    <input className="searchBar" placeholder="Search for Job By Title" onChange={(e)=>{
+      console.log(e.target.value);
+      setJobTitle(e.target.value)
+    }}></input>
+   <div className="allJobsAndJobDetails">
       <div className="allJobs">
         {allJobs.map((ele, i) => {
           return (
@@ -96,6 +119,8 @@ function jobs() {
         </div>
       )}
     </div>
+   </div>
+    
   );
 }
 

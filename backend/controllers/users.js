@@ -5,7 +5,7 @@ const generateToken = require("../jwt");
 
 const register = (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  if (req.body.role === "recruiter") {
+  if (req.body.role === "recruiter" || req.body.role==="") {
     role = "6814e3dd770948ef6e8a7eb0";
   } else if (req.body.role === "job seeker") {
     role = "6814e419770948ef6e8a7eb2";
@@ -19,7 +19,14 @@ const register = (req, res) => {
   });
 
   console.log(req.body.role);
-  newUser
+  usersModel.find({email:email}).
+  then((result)=>{
+  if(result.length===1){
+    res.status(500).json({
+      message: "The Email is already existed",
+    });
+  }else{
+    newUser
     .save()
     .then((result) => {
       res.status(201).json({
@@ -30,9 +37,16 @@ const register = (req, res) => {
     .catch((error) => {
       res.status(500).json({
         data: error,
-        message: "faild to add user",
+        message: "Registration Failed",
       });
     });
+  }
+  })
+  .catch((error)=>{
+console.log(error);
+
+  })
+  
 };
 
 const getUsers = (req, res) => {
