@@ -203,7 +203,7 @@ const getJobByPosterId = (req, res) => {
     .find({ jobPoster: jobPosterId })
     .populate("jobPoster", "firstName")
     .then((result) => {
-      res.status(201).json({
+      res.status(200).json({
         data: result,
         message: "Your Jobs",
       });
@@ -213,10 +213,63 @@ const getJobByPosterId = (req, res) => {
 
       res.status(404).json({
         data: error,
-        message: "Error in getting job",
+        message: "Error in getting the job",
       });
     });
 };
+
+const getJobByTitle=(req,res)=>{
+  const jobTitle= req.params.jobTitle.toUpperCase()
+  
+  jobsModel.find({})
+  
+  .then((result)=>{
+    console.log(result);
+
+    const titlesArray= result.map((ele,i)=>{
+      return ele.title
+    })
+    console.log("line 232: ",titlesArray);
+
+    const jobByTitleArray= titlesArray.filter((ele)=>{
+      console.log(ele);
+      
+      return ele.toUpperCase().includes(jobTitle)
+    })
+     console.log("jobByTitleArray",jobByTitleArray);
+     const jobsArray=[]
+     const jobs= jobByTitleArray.map((ele,i)=>{
+       jobsModel.find({title:ele})
+       .populate("jobPoster")
+       .then((result)=>{
+        jobsArray.push(result)
+        if(i===jobByTitleArray.length-1){
+          console.log(jobsArray);
+          const newJobsArray= jobsArray.map((ele)=>{
+            return ele[0]
+          })
+          res.status(200).json({
+            data: newJobsArray,
+            message: "The Jobs",
+          });
+        }    
+       })
+       .catch((error)=>{
+        res.status(404).json({
+          data: error,
+          message: "Error in getting the job",
+        });
+       })
+       
+     })
+  })
+  .catch((error)=>{    
+    res.status(404).json({
+      data: error,
+      message: "Error in getting the job",
+    });
+  })
+}
 
 module.exports = {
   getAllJobs,
@@ -225,4 +278,5 @@ module.exports = {
   removeJob,
   newApplication,
   getJobByPosterId,
+  getJobByTitle
 };

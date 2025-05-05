@@ -1,79 +1,84 @@
 
-.allJobs{
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 75px;
+.allJobs {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 75px;
 }
-.jobBox{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    border: solid gray 2px;
-    width: 75%;
-    border-radius: 20px;
-    padding: 15px;
-    margin: 10px;
-    gap: 20px;
+.jobBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: solid rgb(229, 231, 235) 2px;
+  width: 75%;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  gap: 20px;
 }
 
-.jobTitle{
-    font-size: large;
-    font-weight: bold;
+.jobTitle {
+  font-size: large;
+  font-weight: bold;
 }
 
 .JobTitleH,
 .DescriptionH,
 .LocationH,
-.requirmentsH{
-    font-size: large;
-    border-bottom: solid 1px  black;
+.requirmentsH {
+  font-size: large;
+  border-bottom: solid 1px black;
+}
+
+.allJobsAndJobDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.selectedJob {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+  border: solid rgb(229, 231, 235) 2px;
+  width: 75%;
+  height: 90%;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  margin-top: 85px;
+  height: 500px;
+  position: sticky;
+  top: 10px;
+  padding: 20px;
+  background: white;
+  margin-right: 70px;
+  
 
 }
 
-.allJobsAndJobDetails{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-   
+.applyNow,
+.detailsButton {
+  display: flex;
+  align-self: center;
+  background-color: rgb(4, 4, 185);
+  color: white;
+  font-size: large;
+  cursor: pointer;
 }
 
-.selectedJob{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 20px;
-    border: solid gray 2px;
-    width: 75%;
-    height: 90%;
-    border-radius: 20px;
-    padding: 15px;
-    margin: 10px;
-    margin-top: 85px;
-
+.locationIcon {
+  width: 30px;
+  height: 20px;
 }
 
-.applyNow, .detailsButton{
-    display: flex;
-    align-self: center;
-    background-color: rgb(4, 4, 185);
-    color: white;
-    font-size: large;
-    cursor: pointer;
-
-}
-
-.locationIcon{
-    width: 30px;
-    height: 20px;
-}
-
-.locationPart{
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-self: center;
+.locationPart {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: center;
 }

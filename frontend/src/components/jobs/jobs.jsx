@@ -12,7 +12,7 @@ function jobs() {
     axios
       .get("http://localhost:5000/jobs")
       .then((result) => {
-        console.log(result.data.data[0]);
+        console.log(result.data.data);
         console.log(result.data.data[0].jobPoster.email);
         setAllJobs(result.data.data);
       })
@@ -42,15 +42,7 @@ function jobs() {
 </svg>
                 <strong className="LocationH">Location</strong>: {ele.location}{" "}
               </div>
-             {/* <div>
-                {ele.requirements.map((ele, i) => {
-                  return (
-                    <div key={i}>
-                      <div> {ele} </div>
-                    </div>
-                  );
-                })}
-              </div>*/}
+            
               <button className="detailsButton"
                 id={i}
                 onClick={(e) => {
