@@ -23,26 +23,55 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 150px;
+  gap: 130px;
 }
 
-.headerPartTwo{
-  gap: 70px;
-
+.headerPartTwo {
+  gap: 50px;
 }
 
 .title,
 .jobsIcon {
   font-size: xx-large;
-}
-
-.title {
   color: rgb(4, 4, 185);
 }
-.loginIcon,
+
+
 .registerIcon {
   font-size: x-large;
   cursor: pointer;
+  background-color: white;
+  color: rgb(252, 89, 18);
+  font-weight: bold;
+  border: rgba(229, 231, 235, 0.658);
+
+}
+
+.iconOfRegister {
+  width: 25px;
+    height: 23px;
+    position: relative;
+    top: 3px;
+    right: 3px;
+}
+
+.loginIcon {
+  font-size: x-large;
+  cursor: pointer;
+  background-color: white;
+  color: rgb(4, 4, 185);
+  border: rgba(229, 231, 235, 0) solid 2px;
+
+}
+
+
+
+.iconOfLogin {
+  width: 25px;
+  height: 23px;
+  position: relative;
+  top: 3px;
+  right: 3px;
 }
 
 .jobsIcon {
