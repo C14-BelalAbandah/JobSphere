@@ -4,38 +4,38 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 function register() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const [registerFailed, setRegisterFailed] = useState(false)
-  const [registerFailedMessage, setRegisterFailedMessage] = useState("")
+  const [registerFailed, setRegisterFailed] = useState(false);
+  const [registerFailedMessage, setRegisterFailedMessage] = useState("");
 
-  
-
-  const createAccountfunction= ()=>{
-
-    axios.post("http://localhost:5000/users/register", {firstName,
+  const createAccountfunction = () => {
+    axios
+      .post("http://localhost:5000/users/register", {
+        firstName,
         lastName,
         email,
         password,
-        role})
-        .then((result)=>{
+        role,
+      })
+      .then((result) => {
         console.log(result);
-        console.log("result ",result);
-        navigate("/")
-        })
-        .catch((error)=>{
-            console.log("errorrrrrrr ",error);
-            setRegisterFailedMessage(error.response.data.message)
-            setRegisterFailed(true)
-            setTimeout(()=>{
-                setRegisterFailed(false)
-            },4000) 
-        })
-  } 
+        console.log("result ", result);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("errorrrrrrr ", error);
+        setRegisterFailedMessage(error.response.data.message);
+        setRegisterFailed(true);
+        setTimeout(() => {
+        setRegisterFailed(false);
+        }, 4000);
+      });
+  };
   return (
     <div className="registerPage">
       <div className="registerTitle">A number of jobs await</div>
@@ -44,30 +44,29 @@ function register() {
           className="input"
           placeholder="First Name"
           onChange={(e) => {
-            setFirstName(e.target.value)
+            setFirstName(e.target.value);
           }}
         ></input>
         <input
           className="input"
           placeholder="Last Name"
           onChange={(e) => {
-            setLastName(e.target.value)
+            setLastName(e.target.value);
           }}
         ></input>
         <input
           className="input"
           placeholder="Email"
           onChange={(e) => {
-            setEmail(e.target.value)
-
+            setEmail(e.target.value);
           }}
         ></input>
         <input
           className="input"
-          placeholder="Password" type="password"
+          placeholder="Password"
+          type="password"
           onChange={(e) => {
-            setPassword(e.target.value)
-
+            setPassword(e.target.value);
           }}
         ></input>
         <div className="roleInput" placeholder="Role">
@@ -83,12 +82,17 @@ function register() {
             <option> job seeker</option>
           </select>
         </div>
-        {registerFailed && <div className="registrationFailed"> {registerFailedMessage} </div>}
-        <button className="createAccountButton" onClick={()=>{
-            createAccountfunction()  
-        }}>Create Account</button>
-
-        
+        {registerFailed && (
+          <div className="registrationFailed"> {registerFailedMessage} </div>
+        )}
+        <button
+          className="createAccountButton"
+          onClick={() => {
+            createAccountfunction();
+          }}
+        >
+          Create Account
+        </button>
       </div>
     </div>
   );

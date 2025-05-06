@@ -77,3 +77,18 @@
 .jobsIcon {
   cursor: pointer;
 }
+
+
+.userProfile {
+  display: flex
+;
+  gap: 3px;
+  font-size: xx-large;
+  color: rgb(4, 4, 185);
+  margin-right: 40px;
+}
+
+.userIcon {
+  width: 28px;
+  height: 35px;
+}

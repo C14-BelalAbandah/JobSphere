@@ -5,15 +5,31 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { toggleContext } from "../../App";
 function login() {
-  const { loginToggle, setLoginToggle, registerToggle, setRigisterToggle } =
-    useContext(toggleContext);
+  const {
+    loginToggle,
+    setLoginToggle,
+    registerToggle,
+    setRigisterToggle,
+    userName,
+    setUserName,
+    
+  } = useContext(toggleContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailedMessage, setLoginFailedMessage] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
   const [token, setToken] = useState("");
+  /* useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);*/
+
   console.log(token);
+  if (token !== "") {
+    console.log(token);
+    setLoginToggle(true);
+    setRigisterToggle(true);
+  }
 
   const loginfunction = () => {
     axios
@@ -25,10 +41,16 @@ function login() {
         console.log(result.data.token);
         setToken(result.data.token);
         localStorage.setItem("token", result.data.token);
-        console.log("result ", result);
-        navigate("/");  
-        setLoginToggle(true)
-        setRigisterToggle(true)
+        console.log("result ", result.data.data.firstName);
+          let modifiedFirstName= result.data.data.firstName.split("")
+          modifiedFirstName[0] =result.data.data.firstName.split("")[0].toUpperCase()
+          setUserName(modifiedFirstName.join(""))
+          localStorage.setItem("userName", modifiedFirstName.join(""))
+          console.log("modifiedFirstName:   ", modifiedFirstName);
+
+        navigate("/");
+        setLoginToggle(true);
+        setRigisterToggle(true);
       })
       .catch((error) => {
         console.log("error", error);
