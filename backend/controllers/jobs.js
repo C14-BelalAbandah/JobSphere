@@ -236,6 +236,13 @@ const getJobByTitle=(req,res)=>{
       
       return ele.toUpperCase().includes(jobTitle)
     })
+
+    console.log(jobByTitleArray.length);
+    if(jobByTitleArray.length===0){
+      res.status(404).json({
+        message: "No Jobs Found",
+      });
+    }
      console.log("jobByTitleArray",jobByTitleArray);
      const jobsArray=[]
      const jobs= jobByTitleArray.map((ele,i)=>{
