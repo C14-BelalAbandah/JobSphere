@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./jobs.css";
 import { toggleContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 function jobs() {
   const {
@@ -14,7 +15,10 @@ function jobs() {
     setUserInfo,
     userName,
     setUserName,
+    applyJob,
+    setApplyJob,
   } = useContext(toggleContext);
+  const navigate= useNavigate()
   const [allJobs, setAllJobs] = useState([]);
   const [allJobsAfterFilteration, setAllJobsAfterFilteration] = useState([]);
   const [jobDetails, setJobDetails] = useState(false);
@@ -22,8 +26,8 @@ function jobs() {
   const [jobTitle, setJobTitle] = useState("");
   const [token, setToken] = useState("");
   const [searchResults, setSearchResults] = useState(false);
-  const [showeAlertMessage, setShoweAlertMessage] = useState(false)
-  const [alertMessage, setAlertMessage] = useState("")
+  const [showeAlertMessage, setShoweAlertMessage] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -67,10 +71,10 @@ function jobs() {
       })
       .catch((error) => {
         console.log("error: ", error.response.data.message);
-        setShoweAlertMessage(true)
-        setAlertMessage(error.response.data.message)
+        setShoweAlertMessage(true);
+        setAlertMessage(error.response.data.message);
         setTimeout(() => {
-          setShoweAlertMessage(false)
+          setShoweAlertMessage(false);
         }, 3000);
       });
   };
@@ -188,7 +192,20 @@ function jobs() {
                   <strong className="LocationH">Poster Email</strong>:{" "}
                   {allJobs[jobIndex].jobPoster.email}
                 </div>
-                <button className="applyNow">Apply Now</button>
+                <button
+                  className="applyNow"
+                  id={jobIndex}
+                  onClick={(e) => {
+                    console.log(e.target.id);
+                    console.log(allJobs[jobIndex]);
+                    setApplyJob(allJobs[jobIndex])
+                    console.log("applyJob: ",applyJob);
+                    
+                    navigate("/applyNow")
+                  }}
+                >
+                  Apply Now
+                </button>
               </div>
             )}
           </div>
@@ -295,7 +312,7 @@ function jobs() {
         </div>
       )}
 
-     { showeAlertMessage && <div className="alertMessage">{alertMessage}</div>}
+      {showeAlertMessage && <div className="alertMessage">{alertMessage}</div>}
     </div>
   );
 }

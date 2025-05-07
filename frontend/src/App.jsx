@@ -6,6 +6,7 @@ import Jobs from "./components/jobs/jobs";
 import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import Register from "./components/register/register";
 import Login from "./components/login/login";
+import Apply from "./components/apply/apply";
 export const toggleContext = createContext();
 
 const App = () => {
@@ -14,9 +15,13 @@ const App = () => {
   const [registerToggle, setRigisterToggle] = useState(false);
   const [userInfo, setUserInfo] = useState(false);
   const [allJobs, setAllJobs] = useState([]);
-  const [userName, setUserName] = useState(localStorage.getItem("userName") || "");
-  
-  
+  const [userName, setUserName] = useState(
+    localStorage.getItem("userName") || ""
+  );
+  const [applyJob, setApplyJob] = useState({});
+  const [resultMessage, setResultMessage] = useState(false);
+  const [showeAlertMessage, setShoweAlertMessage] = useState(false);
+
   return (
     <div className="App">
       <div className="header">
@@ -114,12 +119,19 @@ const App = () => {
           setUserInfo,
           userName,
           setUserName,
+          applyJob,
+          setApplyJob,
+          resultMessage,
+          setResultMessage,
+          showeAlertMessage,
+          setShoweAlertMessage,
         }}
       >
         <Routes>
           <Route path="/" element={<Jobs />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/applyNow" element={<Apply />} />
         </Routes>
       </toggleContext.Provider>
     </div>

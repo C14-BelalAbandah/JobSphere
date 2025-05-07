@@ -220,6 +220,7 @@ const getJobByPosterId = (req, res) => {
 
 const getJobByTitle=(req,res)=>{
   const jobTitle= req.params.jobTitle.toUpperCase()
+  console.log("jobTitle: ",jobTitle);
   
   jobsModel.find({})
   
@@ -233,6 +234,7 @@ const getJobByTitle=(req,res)=>{
 
     const jobByTitleArray= titlesArray.filter((ele)=>{
       console.log(ele);
+      console.log("ele.toUpperCase().includes(jobTitle): " ,ele.toUpperCase().includes(jobTitle));
       
       return ele.toUpperCase().includes(jobTitle)
     })

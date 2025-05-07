@@ -1,0 +1,67 @@
+.applicationDetailsAndApplyForJob {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.applyForJob {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+  border: solid rgb(229, 231, 235) 2px;
+  width: 50%;
+  height: 90%;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  margin-top: 85px;
+  height: 500px;
+  position: sticky;
+  top: 10px;
+  padding: 20px;
+  background: white;
+  margin-right: 70px;
+}
+
+.submitButton {
+  display: flex;
+  align-self: center;
+  background-color: rgb(4, 4, 185);
+  color: white;
+  font-size: large;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.applicationDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+
+}
+
+
+.firstNameText,
+.lastNameText,
+.educationText
+{
+    display: flex;
+    align-self: start;
+    font-size: large;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+
+  .star{
+    font-size: large;
+    color: red;
+  }
+
+  .enterDetails{
+    font-size:x-large;
+  }
