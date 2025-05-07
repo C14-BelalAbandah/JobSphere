@@ -2,8 +2,10 @@ import React from "react";
 import "./apply.css";
 import { useState, useEffect, useContext } from "react";
 import { toggleContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function apply() {
+  const  navigate= useNavigate()
   const {
     resultMessage,
     setResultMessage,
@@ -21,7 +23,7 @@ function apply() {
   const submitApplication = () => {
     axios
       .post(
-        `http://localhost:5000/jobs/681a5c416c854fe1957f932c`,
+        `http://localhost:5000/jobs/681a5c266c854fe1957f9328`,
         { firstName, lastName, email, education },
         {
           headers: {
@@ -39,6 +41,7 @@ function apply() {
         setResultMessage(result.data.message);
         setTimeout(() => {
           setShoweAlertMessage(false);
+          navigate("/")
         }, 3000);
       })
       .catch((error) => {
@@ -47,6 +50,7 @@ function apply() {
         setResultMessage(error.response.data.message);
         setTimeout(() => {
           setShoweAlertMessage(false);
+          navigate("/")
         }, 3000);
       });
   };

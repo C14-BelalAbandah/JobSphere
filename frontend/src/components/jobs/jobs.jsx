@@ -271,15 +271,15 @@ function jobs() {
               <div className="selectedJob">
                 <div>
                   <strong className="JobTitleH"> Job Title</strong>:{" "}
-                  {allJobs[jobIndex].title}
+                  {allJobsAfterFilteration[jobIndex].title}
                 </div>
                 <div>
                   <strong className="DescriptionH">Description</strong>:{" "}
-                  {allJobs[jobIndex].description}
+                  {allJobsAfterFilteration[jobIndex].description}
                 </div>
                 <div>
                   <strong className="requirmentsH">Requirments</strong>:{" "}
-                  {allJobs[jobIndex].requirements.map((ele, i) => {
+                  {allJobsAfterFilteration[jobIndex].requirements.map((ele, i) => {
                     return (
                       <div key={i}>
                         <div> {ele} </div>
@@ -299,13 +299,21 @@ function jobs() {
                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                   </svg>
                   <strong className="LocationH">Location</strong>:{" "}
-                  {allJobs[jobIndex].location}
+                  {allJobsAfterFilteration[jobIndex].location}
                 </div>
                 <div>
                   <strong className="LocationH">Poster Email</strong>:{" "}
-                  {allJobs[jobIndex].jobPoster.email}
+                  {allJobsAfterFilteration[jobIndex].jobPoster.email}
                 </div>
-                <button className="applyNow">Apply Now</button>
+                <button className="applyNow"
+                onClick={(e) => {
+                  console.log(e.target.id);
+                  console.log(allJobsAfterFilteration[jobIndex]);
+                  setApplyJob(allJobsAfterFilteration[jobIndex])
+                  console.log("applyJob: ",applyJob);
+                  
+                  navigate("/applyNow")
+                }}>Apply Now</button>
               </div>
             )}
           </div>
