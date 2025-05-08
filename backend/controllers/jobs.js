@@ -213,6 +213,7 @@ const getJobByPosterId = (req, res) => {
   jobsModel
     .find({ jobPoster: jobPosterId })
     .populate("jobPoster", "firstName")
+    .populate("applications")
     .then((result) => {
       res.status(200).json({
         data: result,
