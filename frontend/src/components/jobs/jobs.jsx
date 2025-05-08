@@ -175,14 +175,21 @@ function jobs() {
                 </div>
                 <div>
                   <strong className="requirmentsH">Requirments</strong>:{" "}
-                  {allJobs[jobIndex].requirements.map((ele, i) => {
-                    return (
-                      <div key={i}>
-                        <div> {ele} </div>
-                      </div>
-                    );
-                  })}
+                  {allJobs[jobIndex].requirements}
                 </div>
+                <div>
+                  <strong className="ExperinceH">Experince</strong>:{" "}
+                  {allJobs[jobIndex].experince}
+                </div>
+                <div>
+                  <strong className="RoleH">Role</strong>:{" "}
+                  {allJobs[jobIndex].role}
+                </div>
+                <div>
+                  <strong className="SalaryRangeH">Salary Range</strong>:{" "}
+                  {allJobs[jobIndex].salaryRange}
+                </div>
+                
                 <div className="locationPart">
                   <svg
                     className="locationIcon"
@@ -288,13 +295,7 @@ function jobs() {
                 </div>
                 <div>
                   <strong className="requirmentsH">Requirments</strong>:{" "}
-                  {allJobsAfterFilteration[jobIndex].requirements.map((ele, i) => {
-                    return (
-                      <div key={i}>
-                        <div> {ele} </div>
-                      </div>
-                    );
-                  })}
+                  {allJobsAfterFilteration[jobIndex].requirements}
                 </div>
                 <div className="locationPart">
                   <svg

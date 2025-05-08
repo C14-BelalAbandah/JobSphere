@@ -21,7 +21,15 @@ const getAllJobs = (req, res) => {
     });
 };
 const addJob = (req, res) => {
-  const { title, description, requirements, location } = req.body;
+  const {
+    title,
+    description,
+    requirements,
+    location,
+    experince,
+    role,
+    salaryRange,
+  } = req.body;
   const jobPoster = req.token.userId;
   const newJob = new jobsModel({
     title,
@@ -29,6 +37,9 @@ const addJob = (req, res) => {
     requirements,
     location,
     jobPoster,
+    experince,
+    role,
+    salaryRange,
   });
 
   newJob
@@ -218,67 +229,71 @@ const getJobByPosterId = (req, res) => {
     });
 };
 
-const getJobByTitle=(req,res)=>{
-  const jobTitle= req.params.jobTitle.toUpperCase()
-  console.log("jobTitle: ",jobTitle);
-  
-  jobsModel.find({})
-  
-  .then((result)=>{
-    console.log(result);
+const getJobByTitle = (req, res) => {
+  const jobTitle = req.params.jobTitle.toUpperCase();
+  console.log("jobTitle: ", jobTitle);
 
-    const titlesArray= result.map((ele,i)=>{
-      return ele.title
-    })
-    console.log("line 232: ",titlesArray);
+  jobsModel
+    .find({})
 
-    const jobByTitleArray= titlesArray.filter((ele)=>{
-      console.log(ele);
-      console.log("ele.toUpperCase().includes(jobTitle): " ,ele.toUpperCase().includes(jobTitle));
-      
-      return ele.toUpperCase().includes(jobTitle)
-    })
+    .then((result) => {
+      console.log(result);
 
-    console.log(jobByTitleArray.length);
-    if(jobByTitleArray.length===0){
-      res.status(404).json({
-        message: "No Jobs Found",
+      const titlesArray = result.map((ele, i) => {
+        return ele.title;
       });
-    }
-     console.log("jobByTitleArray",jobByTitleArray);
-     const jobsArray=[]
-     const jobs= jobByTitleArray.map((ele,i)=>{
-       jobsModel.find({title:ele})
-       .populate("jobPoster")
-       .then((result)=>{
-        jobsArray.push(result)
-        if(i===jobByTitleArray.length-1){
-          console.log(jobsArray);
-          const newJobsArray= jobsArray.map((ele)=>{
-            return ele[0]
-          })
-          res.status(200).json({
-            data: newJobsArray,
-            message: "The Jobs",
-          });
-        }    
-       })
-       .catch((error)=>{
+      console.log("line 232: ", titlesArray);
+
+      const jobByTitleArray = titlesArray.filter((ele) => {
+        console.log(ele);
+        console.log(
+          "ele.toUpperCase().includes(jobTitle): ",
+          ele.toUpperCase().includes(jobTitle)
+        );
+
+        return ele.toUpperCase().includes(jobTitle);
+      });
+
+      console.log(jobByTitleArray.length);
+      if (jobByTitleArray.length === 0) {
         res.status(404).json({
-          data: error,
-          message: "Error in getting the job",
+          message: "No Jobs Found",
         });
-       })
-       
-     })
-  })
-  .catch((error)=>{    
-    res.status(404).json({
-      data: error,
-      message: "Error in getting the job",
+      }
+      console.log("jobByTitleArray", jobByTitleArray);
+      const jobsArray = [];
+      const jobs = jobByTitleArray.map((ele, i) => {
+        jobsModel
+          .find({ title: ele })
+          .populate("jobPoster")
+          .then((result) => {
+            jobsArray.push(result);
+            if (i === jobByTitleArray.length - 1) {
+              console.log(jobsArray);
+              const newJobsArray = jobsArray.map((ele) => {
+                return ele[0];
+              });
+              res.status(200).json({
+                data: newJobsArray,
+                message: "The Jobs",
+              });
+            }
+          })
+          .catch((error) => {
+            res.status(404).json({
+              data: error,
+              message: "Error in getting the job",
+            });
+          });
+      });
+    })
+    .catch((error) => {
+      res.status(404).json({
+        data: error,
+        message: "Error in getting the job",
+      });
     });
-  })
-}
+};
 
 module.exports = {
   getAllJobs,
@@ -287,5 +302,5 @@ module.exports = {
   removeJob,
   newApplication,
   getJobByPosterId,
-  getJobByTitle
+  getJobByTitle,
 };

@@ -35,9 +35,7 @@ function apply() {
         console.log(result);
         setResultMessage();
         setShoweAlertMessage(true);
-        setShoweAlertMessage(true);
         console.log("showeAlertMessage: ",showeAlertMessage);
-        
         setResultMessage(result.data.message);
         setTimeout(() => {
           setShoweAlertMessage(false);

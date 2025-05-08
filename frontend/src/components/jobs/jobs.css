@@ -27,7 +27,10 @@
 .JobTitleH,
 .DescriptionH,
 .LocationH,
-.requirmentsH {
+.requirmentsH,
+.ExperinceH,
+.RoleH,
+.SalaryRangeH {
   font-size: large;
   border-bottom: solid 1px black;
 }
