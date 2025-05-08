@@ -121,15 +121,9 @@ function apply() {
           {applyJob.description}
         </div>
         <div>
-          <strong className="requirmentsH">Requirments</strong>:{" "}
-          {applyJob.requirements.map((ele, i) => {
-            return (
-              <div key={i}>
-                <div> {ele} </div>
-              </div>
-            );
-          })}
-        </div>
+                  <strong className="requirmentsH">Requirments</strong>:{" "}
+                  {applyJob.requirements}
+                </div>
         <div className="locationPart">
           <svg
             className="locationIcon"

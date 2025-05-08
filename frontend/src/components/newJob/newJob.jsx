@@ -116,7 +116,7 @@ function newJob() {
           ></input>
         </div>
         <div className="experinceSec">
-          <div className="experinceText"> Experince</div>
+          <div className="experinceText"> Experience</div>
           <input
             className="input"
             onChange={(e) => {

@@ -115,3 +115,7 @@
   height: 36px;
   color: rgb(4, 4, 185);
 }
+
+.userInfo{
+  cursor: pointer;
+}

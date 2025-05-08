@@ -178,7 +178,7 @@ function jobs() {
                   {allJobs[jobIndex].requirements}
                 </div>
                 <div>
-                  <strong className="ExperinceH">Experince</strong>:{" "}
+                  <strong className="ExperinceH">Experience</strong>:{" "}
                   {allJobs[jobIndex].experince}
                 </div>
                 <div>
@@ -246,6 +246,8 @@ function jobs() {
                         Description
                       </strong>: {ele.description}
                     </div>
+
+                    
                     <div className="locationPart">
                       {" "}
                       <svg
@@ -289,13 +291,25 @@ function jobs() {
                   <strong className="JobTitleH"> Job Title</strong>:{" "}
                   {allJobsAfterFilteration[jobIndex].title}
                 </div>
-                <div>
+                <div >
                   <strong className="DescriptionH">Description</strong>:{" "}
                   {allJobsAfterFilteration[jobIndex].description}
                 </div>
                 <div>
                   <strong className="requirmentsH">Requirments</strong>:{" "}
                   {allJobsAfterFilteration[jobIndex].requirements}
+                </div>
+                <div>
+                  <strong className="ExperinceH">Experience</strong>:{" "}
+                  {allJobsAfterFilteration[jobIndex].experince}
+                </div>
+                <div>
+                  <strong className="RoleH">Role</strong>:{" "}
+                  {allJobsAfterFilteration[jobIndex].role}
+                </div>
+                <div>
+                  <strong className="SalaryRangeH">Salary Range</strong>:{" "}
+                  {allJobsAfterFilteration[jobIndex].salaryRange}
                 </div>
                 <div className="locationPart">
                   <svg

@@ -42,7 +42,7 @@ function login() {
         console.log(result.data.token);
         setToken(result.data.token);
         localStorage.setItem("token", result.data.token);
-        console.log("result ", result.data.data.role.role);
+        console.log("result ", result.data.data._id);
         let modifiedFirstName = result.data.data.firstName.split("");
         modifiedFirstName[0] = result.data.data.firstName
           .split("")[0]
@@ -50,6 +50,7 @@ function login() {
         setUserName(modifiedFirstName.join(""));
         localStorage.setItem("userName", modifiedFirstName.join(""));
         localStorage.setItem("role",result.data.data.role.role)
+        localStorage.setItem("userId",result.data.data._id)
         setRole(result.data.data.role.role)
         console.log("modifiedFirstName:   ", modifiedFirstName);
 
