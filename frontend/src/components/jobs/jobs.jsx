@@ -17,6 +17,8 @@ function jobs() {
     setUserName,
     applyJob,
     setApplyJob,
+    role, setRole,
+    showAddPost, setShowAddPost,
   } = useContext(toggleContext);
   const navigate= useNavigate()
   const [allJobs, setAllJobs] = useState([]);
@@ -33,6 +35,13 @@ function jobs() {
     setToken(localStorage.getItem("token"));
   }, []);
   console.log(token);
+
+  if (role === "recruiter") {
+    setShowAddPost(true)
+    
+  } else {
+    setShowAddPost(false)
+  }
 
   if (token !== null) {
     setLoginToggle(true);

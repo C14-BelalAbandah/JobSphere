@@ -19,11 +19,11 @@ function apply() {
   const [lastName, setLastName] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   console.log("token: ", token);
-
+  
   const submitApplication = () => {
     axios
       .post(
-        `http://localhost:5000/jobs/681a5c266c854fe1957f9328`,
+        `http://localhost:5000/jobs/${applyJob._id}`,
         { firstName, lastName, email, education },
         {
           headers: {

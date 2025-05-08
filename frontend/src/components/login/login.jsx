@@ -12,7 +12,8 @@ function login() {
     setRigisterToggle,
     userName,
     setUserName,
-    
+    role,
+    setRole,
   } = useContext(toggleContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -20,9 +21,9 @@ function login() {
   const [loginFailedMessage, setLoginFailedMessage] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
   const [token, setToken] = useState("");
-  /* useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, []);*/
+  
+  console.log(role);
+  
 
   console.log(token);
   if (token !== "") {
@@ -41,12 +42,16 @@ function login() {
         console.log(result.data.token);
         setToken(result.data.token);
         localStorage.setItem("token", result.data.token);
-        console.log("result ", result.data.data.firstName);
-          let modifiedFirstName= result.data.data.firstName.split("")
-          modifiedFirstName[0] =result.data.data.firstName.split("")[0].toUpperCase()
-          setUserName(modifiedFirstName.join(""))
-          localStorage.setItem("userName", modifiedFirstName.join(""))
-          console.log("modifiedFirstName:   ", modifiedFirstName);
+        console.log("result ", result.data.data.role.role);
+        let modifiedFirstName = result.data.data.firstName.split("");
+        modifiedFirstName[0] = result.data.data.firstName
+          .split("")[0]
+          .toUpperCase();
+        setUserName(modifiedFirstName.join(""));
+        localStorage.setItem("userName", modifiedFirstName.join(""));
+        localStorage.setItem("role",result.data.data.role.role)
+        setRole(result.data.data.role.role)
+        console.log("modifiedFirstName:   ", modifiedFirstName);
 
         navigate("/");
         setLoginToggle(true);

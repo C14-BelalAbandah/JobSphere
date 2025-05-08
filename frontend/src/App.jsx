@@ -7,6 +7,7 @@ import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import Register from "./components/register/register";
 import Login from "./components/login/login";
 import Apply from "./components/apply/apply";
+import NewJob from "./components/newJob/newJob"
 export const toggleContext = createContext();
 
 const App = () => {
@@ -21,6 +22,8 @@ const App = () => {
   const [applyJob, setApplyJob] = useState({});
   const [resultMessage, setResultMessage] = useState(false);
   const [showeAlertMessage, setShoweAlertMessage] = useState(false);
+  const [role, setRole] = useState(localStorage.getItem("role") || "");
+  const [showAddPost, setShowAddPost] = useState(false);
 
   return (
     <div className="App">
@@ -60,7 +63,9 @@ const App = () => {
               </svg>
               Login
             </button>
+           
           )}
+           
           {!registerToggle && (
             <button
               onClick={() => {
@@ -83,6 +88,15 @@ const App = () => {
               Register
             </button>
           )}
+           { showAddPost && <div className="addJobSec" onClick={()=>{
+            navigate("/addNewJob")
+           }}>
+            {<svg className="addJobIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+</svg>}
+            <button className="addJob"> Add Job</button>
+           </div>
+             }
           {userInfo && (
             <div className="userInfo">
               <div className="userProfile">
@@ -104,6 +118,7 @@ const App = () => {
               </div>
             </div>
           )}
+        
         </div>
       </div>
 
@@ -125,6 +140,10 @@ const App = () => {
           setResultMessage,
           showeAlertMessage,
           setShoweAlertMessage,
+          role,
+          setRole,
+          showAddPost,
+          setShowAddPost,
         }}
       >
         <Routes>
@@ -132,6 +151,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/applyNow" element={<Apply />} />
+          <Route path="/addNewJob" element={<NewJob />} />
         </Routes>
       </toggleContext.Provider>
     </div>

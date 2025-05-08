@@ -92,3 +92,26 @@
   width: 28px;
   height: 35px;
 }
+
+.addJobSec{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.addJob{
+  font-size: x-large;
+  cursor: pointer;
+  background-color: white;
+  color: rgb(4, 4, 185);
+  
+  border: rgba(229, 231, 235, 0.658);
+
+
+}
+
+.addJobIcon{
+  width: 22px;
+  height: 36px;
+  color: rgb(4, 4, 185);
+}

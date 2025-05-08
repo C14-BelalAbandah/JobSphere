@@ -1,0 +1,29 @@
+
+.newJobPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+    gap: 15px;
+}
+
+.titleText,
+.descriptionText,
+.requirmentsText,
+.locationText{ display: flex;
+    align-self: start;
+    font-size: large;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.addJobButton{
+    display: flex;
+    align-self: center;
+    background-color: rgb(4, 4, 185);
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    padding: 10px;
+  }
