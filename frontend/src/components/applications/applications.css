@@ -1,0 +1,53 @@
+
+
+.applicationsPage{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+
+}
+
+.aplicationOnJob{
+    display: flex;
+    align-items: start;
+    margin-left: 5vw;
+    font-size: x-large;
+    border-bottom: solid 1px black;
+    padding-bottom: 2px;
+    justify-self: start;
+    color: rgb(4, 4, 185);
+    align-self: start;
+}
+
+.allApllicationSec{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    margin-top: 5vh;
+   
+}
+
+.applications{
+    display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: solid rgb(229, 231, 235) 2px;
+  width: 80%;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  gap: 20px;
+  background-color:white;
+ color: #2D3436;
+}
+
+.applicationDetails{
+    font-size: large;
+  border-bottom: solid 1px black;
+ 
+}
+
+
+

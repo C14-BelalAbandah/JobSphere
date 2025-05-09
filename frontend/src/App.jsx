@@ -9,6 +9,7 @@ import Login from "./components/login/login";
 import Apply from "./components/apply/apply";
 import NewJob from "./components/newJob/newJob";
 import MyProfile from "./components/myProfile/myProfile";
+import Applications from "./components/applications/applications";
 export const toggleContext = createContext();
 
 const App = () => {
@@ -26,6 +27,8 @@ const App = () => {
   const [role, setRole] = useState(localStorage.getItem("role") || "");
   const [showAddPost, setShowAddPost] = useState(false);
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
+  const [myJobs, setMyJobs] = useState([]);
+  const [selectedJob, setSelectedJob] = useState("");
 
   return (
     <div className="App">
@@ -164,6 +167,10 @@ const App = () => {
           setShowAddPost,
           userId,
           setUserId,
+          myJobs,
+          setMyJobs,
+          selectedJob,
+          setSelectedJob,
         }}
       >
         <Routes>
@@ -173,6 +180,7 @@ const App = () => {
           <Route path="/applyNow" element={<Apply />} />
           <Route path="/addNewJob" element={<NewJob />} />
           <Route path="/myProfile" element={<MyProfile />} />
+          <Route path="/myProfile/applications" element={<Applications />} />
         </Routes>
       </toggleContext.Provider>
     </div>

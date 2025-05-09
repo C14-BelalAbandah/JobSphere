@@ -6,10 +6,10 @@ import { toggleContext } from "../../App";
 import axios from "axios";
 import login from "../login/login";
 function myProfile() {
-  const { role, setRole, userId, setUserId } = useContext(toggleContext);
+  const { role, setRole, userId, setUserId,myJobs, setMyJobs,selectedJob, setSelectedJob } = useContext(toggleContext);
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const [myJobs, setMyJobs] = useState([]);
+  
   const [showPostedJobs, setShowPostedJobs] = useState(false);
   console.log(userId);
 
@@ -78,7 +78,12 @@ function myProfile() {
                       Number Of Applications:
                     </span>{" "}
                     {ele.applications.length}{" "}
-                    <button className="viewButton">View</button>
+                    <button className="viewButton" onClick={()=>{
+
+                      console.log(ele._id);
+                      setSelectedJob(ele._id)
+                      navigate("applications")
+                    }}>View</button>
                   </div>
                   <button className="editJobButton">Edit Job</button>
                 </div>
