@@ -36,35 +36,55 @@ function myProfile() {
   return (
     <div className="myProfilePage">
       {showPostedJobs && (
-        <div className="postedJobsSection">
+        <div className="postedJobsOuterSection">
           <strong className="myPostedJobs">My Posted Jobs:</strong>
-          {myJobs.map((ele, i) => {
-            return (
-              <div key={i} className="jobDetails">
-                <div>{ele.title}</div>
-                <div>{ele.description}</div>
-                <div>{ele.requirements}</div>
-                <div>{ele.location}</div>
-                <div>{ele.experince}</div>
-                <div>{ele.role}</div>
-                <div>{ele.salaryRange}</div>
-                <div>
-                  {" "}
-                  {ele.applications.map((ele, i) => {
-                    return (
-                      <div key={i} className="applications">
-                        <div>{ele.firstName}</div>
-                        <div>{ele.lastName}</div>
-                        <div>{ele.email}</div>
-                        <div>{ele.education}</div>
-                      </div>
-                    );
-                  })}
+          <div className="postedJobsSection">
+            {myJobs.map((ele, i) => {
+              return (
+                <div key={i} className="jobDetails">
+                  <div>
+                    <strong className="JobTitleH"> Job Title</strong>:{" "}
+                    {ele.title}
+                  </div>
+                  <div>
+                    <strong className="DescriptionH">Description</strong>:{" "}
+                    {ele.description}
+                  </div>
+                  <div>
+                    <strong className="requirmentsH">Requirments</strong>:{" "}
+                    {ele.requirements}
+                  </div>
+                  <div>
+                    {" "}
+                    <strong className="LocationH">Location</strong>:{" "}
+                    {ele.location}
+                  </div>
+                  <div>
+                    <strong className="ExperinceH">Experience</strong>:{" "}
+                    {ele.experince}
+                  </div>
+                  <div>
+                    <strong className="RoleH">Role</strong>: {ele.role}
+                  </div>
+                  <div>
+                    {" "}
+                    <strong className="SalaryRangeH">Salary Range</strong>:{" "}
+                    {ele.salaryRange}
+                  </div>
+                  <div className="numberOfApplicationsSec">
+                    {" "}
+                    <span className="numberOfApplicationsH">
+                      {" "}
+                      Number Of Applications:
+                    </span>{" "}
+                    {ele.applications.length}{" "}
+                    <button className="viewButton">View</button>
+                  </div>
+                  <button className="editJobButton">Edit Job</button>
                 </div>
-                <button className="editJobButton">Edit Job</button>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
     </div>

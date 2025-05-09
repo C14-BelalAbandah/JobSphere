@@ -40,7 +40,7 @@
 .registerIcon {
   font-size: x-large;
   cursor: pointer;
-  background-color: white;
+  background-color: #F5F6F8;
   color: rgb(252, 89, 18);
   font-weight: bold;
   border: rgba(229, 231, 235, 0.658);
@@ -58,7 +58,7 @@
 .loginIcon {
   font-size: x-large;
   cursor: pointer;
-  background-color: white;
+  background-color: #F5F6F8;
   color: rgb(4, 4, 185);
   border: rgba(229, 231, 235, 0) solid 2px;
 
@@ -102,9 +102,8 @@
 .addJob{
   font-size: x-large;
   cursor: pointer;
-  background-color: white;
+  background-color: #F5F6F8;
   color: rgb(4, 4, 185);
-  
   border: rgba(229, 231, 235, 0.658);
 
 
