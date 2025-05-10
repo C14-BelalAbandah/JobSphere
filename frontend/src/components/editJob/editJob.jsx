@@ -6,8 +6,16 @@ import axios from "axios";
 import "./editJob.css";
 function editJob() {
   const navigate = useNavigate();
-  const { selectedJob, setSelectedJob, myJobs, setMyJobs } =
-    useContext(toggleContext);
+  const {
+    selectedJob,
+    setSelectedJob,
+    myJobs,
+    setMyJobs,
+    resultMessage,
+    setResultMessage,
+    showeAlertMessage,
+    setShoweAlertMessage,
+  } = useContext(toggleContext);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
@@ -16,46 +24,73 @@ function editJob() {
   const [showExperienceInput, setShowExperienceInput] = useState(false);
   const [showRoleInput, setShowRoleInput] = useState(false);
   const [showSalaryRangeInput, setShowSalaryRangeInput] = useState(false);
-  
 
   const jobApplications = myJobs.find((ele, i) => {
     return ele._id === selectedJob;
   });
 
   const [newTitle, setNewTitle] = useState(jobApplications.title);
-  const [newDescription, setNewDescription] = useState(jobApplications.description);
-  const [newRequirments, setNewRequirments] = useState(jobApplications.requirements);
+  const [newDescription, setNewDescription] = useState(
+    jobApplications.description
+  );
+  const [newRequirments, setNewRequirments] = useState(
+    jobApplications.requirements
+  );
   const [newLocation, setNewLocation] = useState(jobApplications.location);
   const [newExperience, setNewExperience] = useState(jobApplications.experince);
   const [newRole, setNewRole] = useState(jobApplications.role);
-  const [newSalaryRange, setNewSalaryRange] = useState(jobApplications.salaryRange);
+  const [newSalaryRange, setNewSalaryRange] = useState(
+    jobApplications.salaryRange
+  );
 
-  const saveChange= ()=>{
-    
-    axios.put(
+  const saveChange = () => {
+    if (newRequirments === "") {
+      console.log("tes");
+    }
+    console.log(newRequirments);
+
+    axios
+      .put(
         `http://localhost:5000/jobs/${selectedJob}`,
-        {title:newTitle,
-            description: newDescription, 
-            requirements: newRequirments,
-            location: newLocation,
-            experince: newExperience,
-            role: newRole,
-            salaryRange: newSalaryRange},
+        {
+          title: newTitle,
+          description: newDescription,
+          requirements: newRequirments,
+          location: newLocation,
+          experince: newExperience,
+          role: newRole,
+          salaryRange: newSalaryRange,
+        },
         { headers: { Authorization: `bearer ${token}` } }
-      ).then((result)=>{
-console.log(result);
-
-      }).catch((error)=>{
-console.log(error);
-
+      )
+      .then((result) => {
+        console.log(result);
+        setShoweAlertMessage(true);
+        console.log("showeAlertMessage: ", showeAlertMessage);
+        console.log("result.data.message: ",result.data.message);
+        
+        setResultMessage(result.data.message);
+        setTimeout(() => {
+          setShoweAlertMessage(false);
+          navigate("/myProfile");
+        }, 3000);
+      
       })
-  }
-  
+      .catch((error) => {
+        console.log(error);
+        setShoweAlertMessage(true);
+        setResultMessage(error.response.data.message);
+        setTimeout(() => {
+          setShoweAlertMessage(false);
+          
+        }, 3000);
+      });
+  };
 
   console.log(myJobs);
   return (
     <div className="editJobPage">
-      <div className="headInEditJobPage"> Please Enter New </div>
+      <div className="headInEditJobPage"></div>
       <div className="jobSection">
         <div className="editTitle">
           <div className="currentTitle">
@@ -73,9 +108,13 @@ console.log(error);
               Edit Title
             </button>
             {showTitleInput && (
-              <input className="inputInEditJob" placeholder="Enter The New Title"
+              <input
+                className="inputInEditJob"
+                placeholder="Enter The New Title"
                 onChange={(e) => {
-                  setNewTitle(e.target.value);
+                  if (e.target.value !== "") {
+                    setNewTitle(e.target.value);
+                  }
                 }}
               ></input>
             )}
@@ -89,16 +128,22 @@ console.log(error);
             {jobApplications.description}
           </div>
           <div className="NewDescription">
-            <button className="editButton" onClick={() => {
+            <button
+              className="editButton"
+              onClick={() => {
                 setShowDescriptionInput(true);
-              }}>Edit Description</button>
+              }}
+            >
+              Edit Description
+            </button>
             {showDescriptionInput && (
-              <textarea className="inputInEditJob" placeholder="Enter The New Title"
+              <textarea
+                className="inputInEditJob"
+                placeholder="Enter The New Title"
                 onChange={(e) => {
-                    if(e.target.value!==""){
-                        setNewDescription(e.target.value);
-                    }
-                    
+                  if (e.target.value !== "") {
+                    setNewDescription(e.target.value);
+                  }
                 }}
               />
             )}
@@ -110,16 +155,22 @@ console.log(error);
             {jobApplications.requirements}
           </div>
           <div className="NewRequirments">
-            <button className="editButton" onClick={() => {
+            <button
+              className="editButton"
+              onClick={() => {
                 setShowRequirmentsInput(true);
-              }}>Edit Requirments</button>
+              }}
+            >
+              Edit Requirments
+            </button>
             {showRequirmentsInput && (
-              <textarea className="inputInEditJob" placeholder="Enter The New Requirments"
+              <textarea
+                className="inputInEditJob"
+                placeholder="Enter The New Requirments"
                 onChange={(e) => {
-                    if(e.target.value!==" "){
-                        setNewRequirments(e.target.value);
-                    }
-
+                  if (e.target.value !== "") {
+                    setNewRequirments(e.target.value);
+                  }
                 }}
               />
             )}
@@ -132,19 +183,23 @@ console.log(error);
             {jobApplications.location}
           </div>
           <div className="NewLocation">
-            <button className="editButton" onClick={() => {
+            <button
+              className="editButton"
+              onClick={() => {
                 setShowLocationInput(true);
-              }}>Edit Location</button>
+              }}
+            >
+              Edit Location
+            </button>
             {showLocationInput && (
-              <input className="inputInEditJob" placeholder="Enter The New Location"
+              <input
+                className="inputInEditJob"
+                placeholder="Enter The New Location"
                 onChange={(e) => {
-                    if(e.target.value!==undefined){
-                        setNewLocation(e.target.value);
-                    }else {
-                        setNewLocation(newLocation);
-                    }
-
-                  
+                  if (e.target.value !== "") {
+                    jobApplications.location;
+                    setNewLocation(e.target.value);
+                  }
                 }}
               ></input>
             )}
@@ -158,16 +213,22 @@ console.log(error);
           </div>
 
           <div className="NewExperince">
-            <button className="editButton" onClick={() => {
+            <button
+              className="editButton"
+              onClick={() => {
                 setShowExperienceInput(true);
-              }}>Edit Experience</button>
+              }}
+            >
+              Edit Experience
+            </button>
             {showExperienceInput && (
-              <input className="inputInEditJob" placeholder="Enter The New Experience"
+              <input
+                className="inputInEditJob"
+                placeholder="Enter The New Experience"
                 onChange={(e) => {
-                    if(e.target.value!==""){
-                        setNewExperience(e.target.value);
-
-                    }
+                  if (e.target.value !== "") {
+                    setNewExperience(e.target.value);
+                  }
                 }}
               ></input>
             )}
@@ -179,27 +240,21 @@ console.log(error);
             <strong className="RoleH">Role:</strong> {jobApplications.role}
           </div>
           <div className="NewRole">
-            <button className="editButton" onClick={() => {
+            <button
+              className="editButton"
+              onClick={() => {
                 setShowRoleInput(true);
-              }}>Edit Role</button>
+              }}
+            >
+              Edit Role
+            </button>
             {showRoleInput && (
               <select
                 className="selectRole"
                 onChange={(e) => {
-                    if(e.target.value!=="undefined"){
-                        console.log("qqqqqqqqqqqqq");
-                        
-                        setNewRole(e.target.value);
-                    }else{
-                        console.log("ssssss");
-                        
-                        setNewRole(jobApplications.role)
-                    }
-                    if(e.target.value===undefined){
-                        console.log("qqqqqqqqqqqqq");
-                        
-                        setNewRole("s;lkjhg");
-                    }
+                  if (e.target.value !== "") {
+                    setNewRole(e.target.value);
+                  }
                 }}
                 placeholder="Enter The New Role "
               >
@@ -217,28 +272,40 @@ console.log(error);
             {jobApplications.salaryRange}
           </div>
           <div className="NewSalaryRange">
-            <button className="editButton" onClick={() => {
+            <button
+              className="editButton"
+              onClick={() => {
                 setShowSalaryRangeInput(true);
-              }}>Edit SalaryRange</button>
+              }}
+            >
+              Edit SalaryRange
+            </button>
             {showSalaryRangeInput && (
-              <input className="inputInEditJob" placeholder="Enter The New Salary Range"
+              <input
+                className="inputInEditJob"
+                placeholder="Enter The New Salary Range"
                 onChange={(e) => {
-                    if(e.target.value!==""){
-                        setNewSalaryRange(e.target.value);
-                    }
-                  
+                  if (e.target.value !== "") {
+                    setNewSalaryRange(e.target.value);
+                  }
                 }}
               ></input>
             )}
           </div>
         </div>
 
-        <button onClick={()=>{
- console.log(newRole);
+        <button
+          onClick={() => {
+            console.log(newRole);
 
-            saveChange()
-        }} className="saveChangeButton">Save Change</button>
+            saveChange();
+          }}
+          className="saveChangeButton"
+        >
+          Save Change
+        </button>
       </div>
+      {showeAlertMessage && <div className="alertMessage">{resultMessage}</div>}
     </div>
   );
 }

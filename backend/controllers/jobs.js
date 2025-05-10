@@ -93,18 +93,18 @@ const editJob = (req, res) => {
           .then((result) => {
             res.status(200).json({
               data: result,
-              message: "the job has been modified successfully",
+              message: "The Job Has Been Modified Successfully",
             });
           })
           .catch((error) => {
             res.status(501).json({
               data: error,
-              message: "error in modifying the job",
+              message: "Error In Modifying The Job",
             });
           });
       } else {
         res.status(501).json({
-          message: "you are not allowed to edit this job",
+          message: "You Are Not Allowed To Edit This Job",
         });
       }
     })
