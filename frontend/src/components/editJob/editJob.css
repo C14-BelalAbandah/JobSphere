@@ -1,0 +1,82 @@
+
+.editJobPage{
+    margin-top: 30px;
+}
+.jobSection{
+    display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  border: solid rgb(229, 231, 235) 2px;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  gap: 20px;
+  background-color:white;
+ color: #2D3436;
+
+}
+
+.currentDescription,
+.currentRequirments{
+    display: flex;
+    align-items: start;
+    width: 60%;
+}
+
+.editButton{
+    display: flex;
+    align-self: center;
+    background-color: rgb(4, 4, 185);
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding:3px;
+}
+
+.editTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: start;
+    gap: 50vw
+    
+}
+
+.editRequirments,.editDescription,.editTitle,.editLocation,.editExperience,.editRole,.editSalaryRange{
+    display: flex;
+    flex-direction: row;
+   justify-content: space-between;
+    align-items: start;
+    gap: 10vw;
+    border: 1px solid  #4f5a5d;
+    border-radius: 10px;
+    padding: 15px;
+    
+}
+
+.NewTitle,.NewDescription,.NewRequirments,.NewLocation,.NewExperince,.NewRole,.NewSalaryRange{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: start;
+    gap: 1vw
+}
+
+.inputInEditJob{
+    padding: 6px;
+    border-radius: 10px;
+    padding-right: 75px;
+    border: gray solid 1px;
+}
+
+.saveChangeButton{
+    display: flex;
+    align-self: center;
+    background-color: rgb(4, 4, 185);
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding:10px;
+    font-size: large;
+}

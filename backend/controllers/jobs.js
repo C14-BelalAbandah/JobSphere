@@ -59,9 +59,25 @@ const addJob = (req, res) => {
 };
 const editJob = (req, res) => {
   const jobId = req.params.id;
-  const { title, description, requirements, location } = req.body;
+  const {
+    title,
+    description,
+    requirements,
+    location,
+    experince,
+    role,
+    salaryRange,
+  } = req.body;
   const modifierId = req.token.userId;
-  const midifiedJob = { title, description, requirements, location };
+  const midifiedJob = {
+    title,
+    description,
+    requirements,
+    location,
+    experince,
+    role,
+    salaryRange,
+  };
 
   jobsModel
     .findById(jobId)

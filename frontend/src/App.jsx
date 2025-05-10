@@ -10,6 +10,7 @@ import Apply from "./components/apply/apply";
 import NewJob from "./components/newJob/newJob";
 import MyProfile from "./components/myProfile/myProfile";
 import Applications from "./components/applications/applications";
+import EditJob from "./components/editJob/editJob";
 export const toggleContext = createContext();
 
 const App = () => {
@@ -181,6 +182,7 @@ const App = () => {
           <Route path="/addNewJob" element={<NewJob />} />
           <Route path="/myProfile" element={<MyProfile />} />
           <Route path="/myProfile/applications" element={<Applications />} />
+          <Route path="/myProfile/editJob" element={<EditJob/>}/>
         </Routes>
       </toggleContext.Provider>
     </div>

@@ -85,7 +85,12 @@ function myProfile() {
                       navigate("applications")
                     }}>View</button>
                   </div>
-                  <button className="editJobButton">Edit Job</button>
+                  <button className="editJobButton" onClick={()=>{
+
+console.log(ele._id);
+setSelectedJob(ele._id)
+navigate("editJob")
+}} >Edit Job</button>
                 </div>
               );
             })}
