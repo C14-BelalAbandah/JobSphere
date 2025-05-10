@@ -64,11 +64,11 @@ function myProfile() {
         })
         .then((result) => {
           setShowApplications(true);
-          console.log(result);
+          console.log("check: ",result.data.data);
           console.log("result.data.data.jobId: ",result.data.data.jobId);
           
 
-          if (result.data.data.jobId===undefined) {
+          if (result.data.data.length===0) {
             setNoApplicationsmessage(true);
             console.log("no applications");
             
@@ -164,7 +164,11 @@ function myProfile() {
             navigate("/")
           }}> See Jobs</button>
           </div>}
-        {applicationsDiv && <div className="applicationsDiv"></div>}
+        {applicationsDiv && <div className="applicationsDiv">
+          <div className="myapplication"> Your Application: </div>
+          <div> {}</div>
+
+          </div>}
         </div>}
     </div>
   );
