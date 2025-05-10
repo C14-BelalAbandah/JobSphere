@@ -166,7 +166,43 @@ function myProfile() {
           </div>}
         {applicationsDiv && <div className="applicationsDiv">
           <div className="myapplication"> Your Application: </div>
-          <div> {}</div>
+          <div className="AllApplications"> {myApplications.map((ele,i)=>{
+            console.log("jobId:",ele);
+            
+            return (
+              <div key={i} className="jobDetails">
+              <div>
+                <strong className="JobTitleH"> Job Title</strong>:{" "}
+                {ele.jobId.title}
+              </div>
+              <div>
+                <strong className="DescriptionH">Description</strong>:{" "}
+                {ele.jobId.description}
+              </div>
+              <div>
+                <strong className="requirmentsH">Requirments</strong>:{" "}
+                {ele.jobId.requirements}
+              </div>
+              <div>
+                {" "}
+                <strong className="LocationH">Location</strong>:{" "}
+                {ele.jobId.location}
+              </div>
+              <div>
+                <strong className="ExperinceH">Experience</strong>:{" "}
+                {ele.jobId.experince}
+              </div>
+              <div>
+                <strong className="RoleH">Role</strong>: {ele.role}
+              </div>
+              <div>
+                {" "}
+                <strong className="SalaryRangeH">Salary Range</strong>:{" "}
+                {ele.jobId.salaryRange}
+              </div>
+              </div>
+            )
+          })}</div>
 
           </div>}
         </div>}

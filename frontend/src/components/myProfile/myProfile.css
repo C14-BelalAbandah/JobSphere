@@ -25,7 +25,7 @@ body{
 
 }
 
-.myPostedJobs{
+.myPostedJobs,.myapplication{
   display: flex;
   align-items: start;
   margin-left: 5vw;
@@ -37,7 +37,7 @@ body{
 
 }
 
-.postedJobsSection{
+.postedJobsSection,.AllApplications{
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
