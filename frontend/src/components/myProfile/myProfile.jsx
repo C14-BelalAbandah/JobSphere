@@ -6,32 +6,84 @@ import { toggleContext } from "../../App";
 import axios from "axios";
 import login from "../login/login";
 function myProfile() {
-  const { role, setRole, userId, setUserId,myJobs, setMyJobs,selectedJob, setSelectedJob } = useContext(toggleContext);
+  const {
+    role,
+    setRole,
+    userId,
+    setUserId,
+    myJobs,
+    setMyJobs,
+    selectedJob,
+    setSelectedJob,
+    resultMessage,
+    setResultMessage,
+    showeAlertMessage,
+    setShoweAlertMessage,
+  } = useContext(toggleContext);
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  
+
   const [showPostedJobs, setShowPostedJobs] = useState(false);
-  console.log(userId);
+  const [showApplications, setShowApplications] = useState(false);
+  const [myApplications, setMyApplications] = useState([]);
+  const [noApplicationsMessage, setNoApplicationsmessage] = useState(false);
+  const [applicationsDiv, setApplicationsDiv] = useState(false)
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/jobs/${userId}`, {
-        headers: {
-          Authorization: `bearer ${token}`,
-        },
-      })
-      .then((result) => {
-        console.log(result);
-        setMyJobs(result.data.data);
-        setShowPostedJobs(true);
-        console.log("app: ", result.data.data.applications);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  console.log('userId:',userId);
+  console.log(role);
+  console.log("myApplications: ", myApplications);
 
-  console.log(myJobs);
+  if (role === "recruiter") {
+    useEffect(() => {
+      axios
+        .get(`http://localhost:5000/jobs/${userId}`, {
+          headers: {
+            Authorization: `bearer ${token}`,
+          },
+        })
+        .then((result) => {
+          console.log(result);
+          setMyJobs(result.data.data);
+          setShowPostedJobs(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
+  } else if (role === "job_seeker") {
+    console.log("in get");
+    
+    useEffect(() => {
+      console.log("in useEf");
+      
+      axios
+        .get(`http://localhost:5000/applications/${userId}`, {
+          headers: {
+            Authorization: `bearer ${token}`,
+          },
+        })
+        .then((result) => {
+          setShowApplications(true);
+          console.log(result);
+          console.log("result.data.data.jobId: ",result.data.data.jobId);
+          
+
+          if (result.data.data.jobId===undefined) {
+            setNoApplicationsmessage(true);
+            console.log("no applications");
+            
+          } else {
+            setApplicationsDiv(true)
+            setMyApplications(result.data.data);
+            console.log("applications:," ,result.data.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
+  }
+
 
   return (
     <div className="myProfilePage">
@@ -78,25 +130,42 @@ function myProfile() {
                       Number Of Applications:
                     </span>{" "}
                     {ele.applications.length}{" "}
-                    <button className="viewButton" onClick={()=>{
-
-                      console.log(ele._id);
-                      setSelectedJob(ele._id)
-                      navigate("applications")
-                    }}>View</button>
+                    <button
+                      className="viewButton"
+                      onClick={() => {
+                        console.log(ele._id);
+                        setSelectedJob(ele._id);
+                        navigate("applications");
+                      }}
+                    >
+                      View
+                    </button>
                   </div>
-                  <button className="editJobButton" onClick={()=>{
-
-console.log(ele._id);
-setSelectedJob(ele._id)
-navigate("editJob")
-}} >Edit Job</button>
+                  <button
+                    className="editJobButton"
+                    onClick={() => {
+                      console.log(ele._id);
+                      setSelectedJob(ele._id);
+                      navigate("editJob");
+                    }}
+                  >
+                    Edit Job
+                  </button>
                 </div>
               );
             })}
           </div>
         </div>
       )}
+      {showApplications && <div className="showApplicationsDiv">
+        {noApplicationsMessage && <div className="noApplicationsMessageDiv">
+          <div className="noApplicationMessage"> You Have No Applications </div>
+          <button className="seejobsButton" onClick={()=>{
+            navigate("/")
+          }}> See Jobs</button>
+          </div>}
+        {applicationsDiv && <div className="applicationsDiv"></div>}
+        </div>}
     </div>
   );
 }

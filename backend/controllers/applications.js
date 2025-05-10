@@ -1,6 +1,7 @@
 const applicationModel = require("../models/applicationSchema");
 
 const getApplications= (req,res)=>{
+
     applicationModel.find({})
     .populate("userId")
     .populate("jobId")
@@ -18,4 +19,25 @@ const getApplications= (req,res)=>{
     })
 }
 
-module.exports = { getApplications };
+const getApplicationsByUserID = (req,res)=>{
+ const userId= req.params.userId
+ applicationModel.find({userId:userId})
+ .populate("jobId")
+ .then((result)=>{
+    console.log(result)
+    res.status(200).json({
+        data:result,
+        message: "Your applications"
+    })    
+ })
+ .catch((error)=>{
+    console.log(error)
+    res.status(404).json({
+        error:error,
+        message: "No applications Jobs"
+    })
+    
+})
+}
+
+module.exports = { getApplications,getApplicationsByUserID };
