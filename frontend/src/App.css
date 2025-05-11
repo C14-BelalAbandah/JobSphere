@@ -55,7 +55,7 @@
     right: 3px;
 }
 
-.loginIcon {
+.loginIcon,.logout {
   font-size: x-large;
   cursor: pointer;
   background-color: #F5F6F8;
@@ -118,3 +118,11 @@
 .userInfo{
   cursor: pointer;
 }
+ .iconOflogout {
+  width: 27px;
+  height: 24px;
+  position: relative;
+  top: 3px;
+  left: 2px;
+}
+

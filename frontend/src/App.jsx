@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from "react";
 import axios from "axios";
 import Jobs from "./components/jobs/jobs";
 import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Register from "./components/register/register";
 import Login from "./components/login/login";
 import Apply from "./components/apply/apply";
@@ -11,6 +12,7 @@ import NewJob from "./components/newJob/newJob";
 import MyProfile from "./components/myProfile/myProfile";
 import Applications from "./components/applications/applications";
 import EditJob from "./components/editJob/editJob";
+import { logOut } from "./components/redux/slice/tokenSlice";
 export const toggleContext = createContext();
 
 const App = () => {
@@ -30,6 +32,30 @@ const App = () => {
   const [userId, setUserId] = useState(localStorage.getItem("userId") || "");
   const [myJobs, setMyJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState("");
+  const [showLogout, setShowLogout] = useState(true);
+
+  const token = useSelector((state) => {
+    console.log("state:");
+
+    return state.tokenReducer.token;
+  });
+
+  console.log("Redux: ", token);
+useEffect(()=>{
+  if (token===null){
+    setShowLogout(false)
+  }
+},[])
+  
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    setShowLogout(false)
+    navigate("/")
+    dispatch(logOut());
+  };
+
+  console.log("showLogout: ", showLogout);
 
   return (
     <div className="App">
@@ -39,7 +65,9 @@ const App = () => {
             J<img className="logo" src="./images/logo.png" />
             bSphere
           </div>
-          <div className="jobsIcon">Jobs</div>
+          <div className="jobsIcon" onClick={()=>{
+            navigate("/")
+          }}>Jobs</div>
         </div>
         <div className="headerPartTwo">
           {!loginToggle && (
@@ -141,6 +169,34 @@ const App = () => {
               </div>
             </div>
           )}
+
+          {showLogout && (
+            <button
+              className="logout"
+              onClick={() => {
+                logout();
+              }}
+            >
+              <svg
+                className="iconOflogout"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z"
+                />
+              </svg>
+              Logout
+            </button>
+          )}
         </div>
       </div>
 
@@ -172,6 +228,8 @@ const App = () => {
           setMyJobs,
           selectedJob,
           setSelectedJob,
+          showLogout,
+          setShowLogout,
         }}
       >
         <Routes>
@@ -182,7 +240,7 @@ const App = () => {
           <Route path="/addNewJob" element={<NewJob />} />
           <Route path="/myProfile" element={<MyProfile />} />
           <Route path="/myProfile/applications" element={<Applications />} />
-          <Route path="/myProfile/editJob" element={<EditJob/>}/>
+          <Route path="/myProfile/editJob" element={<EditJob />} />
         </Routes>
       </toggleContext.Provider>
     </div>

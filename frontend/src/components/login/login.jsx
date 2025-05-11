@@ -14,6 +14,8 @@ function login() {
     setUserName,
     role,
     setRole,
+    showLogout, setShowLogout
+
   } = useContext(toggleContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -57,6 +59,7 @@ function login() {
         navigate("/");
         setLoginToggle(true);
         setRigisterToggle(true);
+        setShowLogout(true)
       })
       .catch((error) => {
         console.log("error", error);
