@@ -2,18 +2,26 @@ import React, { useState } from 'react'
 const App = () => {
 const [image, setImage ] = useState("");
 const [ url, setUrl ] = useState("");
+console.log(url);
+
 const uploadImage = () => {
 const data = new FormData()
 data.append("file", image)
-data.append("upload_preset", "tutorial")
-data.append("cloud_name","breellz")
-fetch("cloudinary://714351913494664:Pj-klh27QyZTto4ywEvyH1R7LZc@uploadCV",{
+data.append("upload_preset", "uploadCv")
+data.append("cloud_name","dcq4kfehy")
+fetch("https://api.cloudinary.com/v1_1/dcq4kfehy/image/upload",{
 method:"post",
 body: data
 })
 .then(resp => resp.json())
 .then(data => {
 setUrl(data.url)
+console.log("image: ",image);
+
+console.log("after: ",url);
+console.log("data: ",data);
+
+
 })
 .catch(err => console.log(err))
 }

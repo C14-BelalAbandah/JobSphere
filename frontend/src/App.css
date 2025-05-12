@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 .App {
   text-align: center;
 }
@@ -36,35 +40,31 @@
   color: rgb(4, 4, 185);
 }
 
-
 .registerIcon {
   font-size: x-large;
   cursor: pointer;
-  background-color: #F5F6F8;
+  background-color: #F0F4F8;
   color: rgb(252, 89, 18);
   font-weight: bold;
   border: rgba(229, 231, 235, 0.658);
-
 }
 
 .iconOfRegister {
   width: 25px;
-    height: 23px;
-    position: relative;
-    top: 3px;
-    right: 3px;
+  height: 23px;
+  position: relative;
+  top: 3px;
+  right: 3px;
 }
 
-.loginIcon,.logout {
+.loginIcon,
+.logout {
   font-size: x-large;
   cursor: pointer;
-  background-color: #F5F6F8;
+  background-color: #F0F4F8;
   color: rgb(4, 4, 185);
   border: rgba(229, 231, 235, 0) solid 2px;
-
 }
-
-
 
 .iconOfLogin {
   width: 25px;
@@ -78,10 +78,8 @@
   cursor: pointer;
 }
 
-
 .userProfile {
-  display: flex
-;
+  display: flex;
   gap: 3px;
   font-size: xx-large;
   color: rgb(4, 4, 185);
@@ -93,32 +91,30 @@
   height: 35px;
 }
 
-.addJobSec{
+.addJobSec {
   display: flex;
   flex-direction: row;
   cursor: pointer;
 }
 
-.addJob{
+.addJob {
   font-size: x-large;
   cursor: pointer;
-  background-color: #F5F6F8;
+  background-color: #f5f6f8;
   color: rgb(4, 4, 185);
   border: rgba(229, 231, 235, 0.658);
-
-
 }
 
-.addJobIcon{
+.addJobIcon {
   width: 22px;
   height: 36px;
   color: rgb(4, 4, 185);
 }
 
-.userInfo{
+.userInfo {
   cursor: pointer;
 }
- .iconOflogout {
+.iconOflogout {
   width: 27px;
   height: 24px;
   position: relative;
@@ -126,3 +122,16 @@
   left: 2px;
 }
 
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(4, 4, 185);
+  padding: 10vh;
+  position: relative;
+  top: 14vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

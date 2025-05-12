@@ -246,7 +246,28 @@ useEffect(()=>{
           <Route path="/upload" element={<UploadWedget/>}/>
         </Routes>
       </toggleContext.Provider>
+
+      <footer className="footer">
+        <div className="footerDetails">
+          <div className="websiteLogo">  J<img className="logo" src="./images/logo.png" />
+          bSphere</div>
+          <div className="websiteInfo">
+            <div className="termsOfUse"> Terms Of Use</div>
+            <div className="privacyPolicy">Privacy Policy</div>
+            <div className="beSafe"> Be Safe</div>
+
+          </div>
+          <div className="contactDetails">
+            <div className="emailInFooter"> JobSphere@gmail.com</div>
+            <div className="phoneNumber">007xxxxxxxx</div>
+            <div className="contactsIcons"></div>
+          </div>
+        </div>
+        <div className="copyRight">2025 JobSphere | All rights Reserved</div>
+
+      </footer>
     </div>
+    
   );
 };
 

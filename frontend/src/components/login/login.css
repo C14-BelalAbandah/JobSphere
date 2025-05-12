@@ -3,12 +3,12 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
+ /* position: relative;
   top: 10.1%;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: white;*/
 }
 .titleAndInputs {
   display: flex;
