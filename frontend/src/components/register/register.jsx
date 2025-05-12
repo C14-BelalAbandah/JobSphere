@@ -38,6 +38,8 @@ function register() {
   };
   return (
     <div className="registerPage">
+      
+      <div className="registerTitleAndInputs">
       <div className="registerTitle">A number of jobs await</div>
       <div className="inputs">
         <input
@@ -94,6 +96,11 @@ function register() {
           Create Account
         </button>
       </div>
+      </div>
+      
+     
+      <img src="./images/registerBackGround.png" className="registerImage"></img>
+
     </div>
   );
 }

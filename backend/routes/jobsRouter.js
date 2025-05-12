@@ -14,7 +14,7 @@ const {
 
 jobsRouter.get("/", getAllJobs);
 jobsRouter.get("/:jobPosterId", authentication,getJobByPosterId);
-jobsRouter.get("/jobByTitle/:jobTitle", authentication,getJobByTitle);
+jobsRouter.get("/jobByTitle/:jobTitle",getJobByTitle);
 jobsRouter.post("/", authentication,authorization("ADD_POST"),addJob);
 jobsRouter.post("/:jobId", authentication,newApplication);
 jobsRouter.put("/:id",authentication,authorization("ADD_POST"), editJob);

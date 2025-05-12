@@ -13,6 +13,7 @@ import MyProfile from "./components/myProfile/myProfile";
 import Applications from "./components/applications/applications";
 import EditJob from "./components/editJob/editJob";
 import { logOut } from "./components/redux/slice/tokenSlice";
+import UploadWedget from "./components/uploadWedget/uploadWedget";
 export const toggleContext = createContext();
 
 const App = () => {
@@ -52,6 +53,7 @@ useEffect(()=>{
   const logout = () => {
     setShowLogout(false)
     navigate("/")
+
     dispatch(logOut());
   };
 
@@ -241,6 +243,7 @@ useEffect(()=>{
           <Route path="/myProfile" element={<MyProfile />} />
           <Route path="/myProfile/applications" element={<Applications />} />
           <Route path="/myProfile/editJob" element={<EditJob />} />
+          <Route path="/upload" element={<UploadWedget/>}/>
         </Routes>
       </toggleContext.Provider>
     </div>

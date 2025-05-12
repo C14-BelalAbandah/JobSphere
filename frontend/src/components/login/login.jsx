@@ -14,8 +14,8 @@ function login() {
     setUserName,
     role,
     setRole,
-    showLogout, setShowLogout
-
+    showLogout,
+    setShowLogout,
   } = useContext(toggleContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -23,9 +23,8 @@ function login() {
   const [loginFailedMessage, setLoginFailedMessage] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
   const [token, setToken] = useState("");
-  
+
   console.log(role);
-  
 
   console.log(token);
   if (token !== "") {
@@ -51,15 +50,15 @@ function login() {
           .toUpperCase();
         setUserName(modifiedFirstName.join(""));
         localStorage.setItem("userName", modifiedFirstName.join(""));
-        localStorage.setItem("role",result.data.data.role.role)
-        localStorage.setItem("userId",result.data.data._id)
-        setRole(result.data.data.role.role)
+        localStorage.setItem("role", result.data.data.role.role);
+        localStorage.setItem("userId", result.data.data._id);
+        setRole(result.data.data.role.role);
         console.log("modifiedFirstName:   ", modifiedFirstName);
 
         navigate("/");
         setLoginToggle(true);
         setRigisterToggle(true);
-        setShowLogout(true)
+        setShowLogout(true);
       })
       .catch((error) => {
         console.log("error", error);
@@ -72,53 +71,56 @@ function login() {
   };
   return (
     <div className="loginPage">
-      <div className="loginTitle">Login</div>
-      <div className="inputs">
-        <div className="emailSec">
-          <div className="emailText"> Email</div>
-          <input
-            className="input"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            placeholder="Enter Email ID"
-          ></input>
-        </div>
-        <div className="passwordSec">
-          <div className="passwordText"> Password</div>
-          <input
-            className="input"
-            type="password"
-            placeholder="Enter Your Password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
-        </div>
-        {loginFailed && (
-          <div className="loginFailed"> {loginFailedMessage} </div>
-        )}
-        <button
-          className="loginButton"
-          onClick={() => {
-            loginfunction();
-          }}
-        >
-          Login
-        </button>
-        <div>
-          {" "}
-          New to JobSphere?{" "}
-          <strong
-            className="newToJobsphereRegister"
+      <div className="titleAndInputs">
+        <div className="loginTitle">Login</div>
+        <div className="inputs">
+          <div className="emailSec">
+            <div className="emailText"> Email</div>
+            <input
+              className="input"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder="Enter Email ID"
+            ></input>
+          </div>
+          <div className="passwordSec">
+            <div className="passwordText"> Password</div>
+            <input
+              className="input"
+              type="password"
+              placeholder="Enter Your Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            ></input>
+          </div>
+          {loginFailed && (
+            <div className="loginFailed"> {loginFailedMessage} </div>
+          )}
+          <button
+            className="loginButton"
             onClick={() => {
-              navigate("/register");
+              loginfunction();
             }}
           >
-            Register
-          </strong>
+            Login
+          </button>
+          <div>
+            {" "}
+            New to JobSphere?{" "}
+            <strong
+              className="newToJobsphereRegister"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </strong>
+          </div>
         </div>
       </div>
+      <img src="./images/loginImage.png" className="loginImage"></img>
     </div>
   );
 }
