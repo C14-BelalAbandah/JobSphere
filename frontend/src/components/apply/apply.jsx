@@ -186,6 +186,18 @@ function apply() {
           <strong className="LocationH">Poster Email</strong>:{" "}
           {applyJob.jobPoster.email}
         </div>
+        <div>
+          <strong className="LocationH">Experience</strong>:{" "}
+          {applyJob.experince}
+        </div>
+        <div>
+          <strong className="LocationH">Role</strong>:{" "}
+          {applyJob.role}
+        </div>
+        <div>
+          <strong className="LocationH">Salary Range</strong>:{" "}
+          {applyJob.salaryRange}
+        </div>
       </div>
 
       {showeAlertMessage && <div className="alertMessage">{resultMessage}</div>}
