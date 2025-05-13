@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;*/
+  background-color: #F0F4F8;*/
 }
 .titleAndInputs {
   display: flex;
@@ -24,7 +24,7 @@
 .loginButton {
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;
@@ -51,12 +51,12 @@
 
 .newToJobsphereRegister {
   font-size: large;
-  color: rgb(4, 4, 185);
+  color: #6e00be;
   cursor: pointer;
 }
 
 .loginImage {
-  background-color: #f5f6f8;
+  background-color: #F0F4F8;
   margin-top: 100px;
   background-color: #f5f6f8;
   margin-top: 108px;

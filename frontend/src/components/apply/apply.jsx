@@ -5,7 +5,7 @@ import { toggleContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function apply() {
-  const  navigate= useNavigate()
+  const navigate = useNavigate();
   const {
     resultMessage,
     setResultMessage,
@@ -17,40 +17,70 @@ function apply() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [cvUrl, setCvUrl] = useState("");
+  const [file, setFile] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   console.log("token: ", token);
+  console.log("cvUrl: ",cvUrl);
   
+
+  const uploadFile = () => {
+    
+  };
+
   const submitApplication = () => {
-    axios
-      .post(
-        `http://localhost:5000/jobs/${applyJob._id}`,
-        { firstName, lastName, email, education },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((result) => {
-        console.log(result);
-        setResultMessage();
-        setShoweAlertMessage(true);
-        console.log("showeAlertMessage: ",showeAlertMessage);
-        setResultMessage(result.data.message);
-        setTimeout(() => {
-          setShoweAlertMessage(false);
-          navigate("/")
-        }, 3000);
+
+    if (!file) return alert("Select a PDF first");
+  
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "uploadCv");
+    data.append("resource_type", "raw");
+  
+    fetch("https://api.cloudinary.com/v1_1/dcq4kfehy/raw/upload", {
+      method: "POST",
+      body: data
+    })
+      .then(res => res.json())
+      .then(json => {
+        console.log("raw upload response:", json);
+        setCvUrl(json.secure_url);
+        axios
+        .post(
+          `http://localhost:5000/jobs/${applyJob._id}`,
+          { firstName, lastName, email, education, cvUrl:json.secure_url},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+          setResultMessage();
+          setShoweAlertMessage(true);
+          console.log("showeAlertMessage: ", showeAlertMessage);
+          setResultMessage(result.data.message);
+          console.log("cvUrl in then: ",cvUrl);
+          
+          setTimeout(() => {
+            setShoweAlertMessage(false);
+            navigate("/");
+          }, 3000);
+        })
+        .catch((error) => {
+          console.log(error);
+          setShoweAlertMessage(true);
+          setResultMessage(error.response.data.message);
+          setTimeout(() => {
+            setShoweAlertMessage(false);
+            navigate("/");
+          }, 3000);
+        });
       })
-      .catch((error) => {
-        console.log(error);
-        setShoweAlertMessage(true);
-        setResultMessage(error.response.data.message);
-        setTimeout(() => {
-          setShoweAlertMessage(false);
-          navigate("/")
-        }, 3000);
-      });
+      .catch(err => console.error("Upload error:", err));
+
+   
   };
 
   return (
@@ -99,11 +129,26 @@ function apply() {
                 setEducation(e.target.value);
               }}
             ></input>
+
+            
           </div>
+          <div className="cvSection">
+          <div className=" uploadYourCvText"> Upload Your CV</div>
+          <input
+        type="file"
+        accept=".pdf"
+        className="uploadCv"
+        onChange={e => setFile(e.target.files[0])}
+      ></input>
+      
+      
+          </div>
+          
           <button
             className="submitButton"
             onClick={() => {
               submitApplication();
+             
             }}
           >
             {" "}
@@ -121,9 +166,9 @@ function apply() {
           {applyJob.description}
         </div>
         <div>
-                  <strong className="requirmentsH">Requirments</strong>:{" "}
-                  {applyJob.requirements}
-                </div>
+          <strong className="requirmentsH">Requirments</strong>:{" "}
+          {applyJob.requirements}
+        </div>
         <div className="locationPart">
           <svg
             className="locationIcon"

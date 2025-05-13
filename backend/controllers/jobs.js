@@ -152,7 +152,7 @@ const removeJob = (req, res) => {
 };
 
 const newApplication = (req, res) => {
-  const { firstName, lastName, email, education } = req.body;
+  const { firstName, lastName, email, education,cvUrl } = req.body;
   const userId = req.token.userId;
   const jobId = req.params.jobId;
 
@@ -174,6 +174,7 @@ const newApplication = (req, res) => {
           lastName,
           email,
           education,
+          cvUrl,
           userId,
           jobId,
         });

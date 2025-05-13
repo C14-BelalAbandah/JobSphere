@@ -33,7 +33,7 @@
   border-bottom: solid 1px black;
   padding-bottom: 2px;
   justify-self: start;
-  color: rgb(4, 4, 185);
+  color: #6e00be;
 
 }
 
@@ -51,7 +51,7 @@
 .editJobButton{
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;
@@ -68,7 +68,7 @@
 .viewButton{
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;
@@ -94,7 +94,7 @@
 .seejobsButton{
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   cursor: pointer;
   border-radius: 10px;

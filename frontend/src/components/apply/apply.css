@@ -28,7 +28,7 @@
 .submitButton {
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: start;
   gap: 10px;
   padding: 7px;
 
@@ -64,4 +64,32 @@
 
   .enterDetails{
     font-size:x-large;
+  }
+
+
+  .cvSection{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    
+    
+  }
+
+  .uploadButton {
+    display: flex;
+    align-self: center;
+    background-color: #6e00be;
+    color: white;
+    
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .uploadYourCvText{
+    display: flex;
+    align-self: start;
+    font-size: large;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    border-bottom: black solid 2px;
   }

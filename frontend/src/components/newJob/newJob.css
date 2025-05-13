@@ -57,7 +57,7 @@ grid-row-end: 4;
 .addJobButton{
     display: flex;
     align-self: start;
-    background-color: rgb(4, 4, 185);
+    background-color: #6e00be;
     color: white;
     font-size: large;
     cursor: pointer;

@@ -28,6 +28,8 @@ function applications() {
                 <div><strong >Name:</strong> {ele.firstName} {" "} {ele.lastName}</div>
                 <div><strong >Email:</strong> {ele.email}</div>
                 <div><strong >Education:</strong> {ele.education}</div>
+                <div><strong >CV:</strong> {ele.cvUrl}</div>
+
             </div>
                 </div>
 

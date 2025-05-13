@@ -50,7 +50,7 @@
 .searchButton {
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;
@@ -78,7 +78,7 @@
 
 .alertMessage {
   padding: 15px 25px;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -126,7 +126,7 @@
 .detailsButton {
   display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;

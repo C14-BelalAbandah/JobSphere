@@ -99,7 +99,7 @@ function register() {
       </div>
       
      
-      <img src="./images/registerBackGround.png" className="registerImage"></img>
+      <img src="./images/registerImage-Photoroom.png" className="registerImage"></img>
 
     </div>
   );

@@ -7,7 +7,7 @@ body{
     justify-content: space-between;
     align-items: center;
     margin-top: 100px;
-    background-color: #F0F4F8;
+    background-color: #F0F4F8
 }
 
 .registerPage{
@@ -55,7 +55,7 @@ body{
 .createAccountButton{
     display: flex;
   align-self: center;
-  background-color: rgb(4, 4, 185);
+  background-color: #6e00be;
   color: white;
   font-size: large;
   cursor: pointer;

@@ -27,7 +27,7 @@
 .editButton{
     display: flex;
     align-self: center;
-    background-color: rgb(4, 4, 185);
+    background-color: #6e00be;
     color: white;
     cursor: pointer;
     border-radius: 10px;
@@ -73,7 +73,7 @@
 .saveChangeButton{
     display: flex;
     align-self: center;
-    background-color: rgb(4, 4, 185);
+    background-color: #6e00be;
     color: white;
     cursor: pointer;
     border-radius: 10px;

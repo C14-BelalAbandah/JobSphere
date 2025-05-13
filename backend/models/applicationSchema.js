@@ -5,6 +5,7 @@ const applicationSchema= new mongoose.Schema({
     lastName: {type:String, required: true},
     email: {type:String, required: true},
     education:{type:String, required: true},
+    cvUrl: {type:String},
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "users"},
     jobId: {type: mongoose.Schema.Types.ObjectId ,ref: "jobs"},
     
