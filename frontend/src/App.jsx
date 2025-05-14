@@ -14,6 +14,7 @@ import Applications from "./components/applications/applications";
 import EditJob from "./components/editJob/editJob";
 import { logOut } from "./components/redux/slice/tokenSlice";
 import UploadWedget from "./components/uploadWedget/uploadWedget";
+import JobDetails from "./components/jobDetails/jobDetails";
 export const toggleContext = createContext();
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState("");
   const [showLogout, setShowLogout] = useState(true);
+  const [jobIndex, setJobIndex] = useState(0);
 
   const token = useSelector((state) => {
     console.log("state:");
@@ -237,6 +239,8 @@ const App = () => {
           setSelectedJob,
           showLogout,
           setShowLogout,
+          jobIndex,
+          setJobIndex,
         }}
       >
         <Routes>
@@ -249,6 +253,7 @@ const App = () => {
           <Route path="/myProfile/applications" element={<Applications />} />
           <Route path="/myProfile/editJob" element={<EditJob />} />
           <Route path="/upload" element={<UploadWedget />} />
+          <Route path="/jobDetails" element={<JobDetails />} />
         </Routes>
       </toggleContext.Provider>
 
@@ -265,9 +270,20 @@ const App = () => {
             <div className="beSafe"> Be Safe</div>
           </div>
           <div className="contactDetails">
-            <div className="emailInFooter"> <svg className="emailIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
-  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-</svg> JobSphere@gmail.com</div>
+            <div className="emailInFooter">
+              {" "}
+              <svg
+                className="emailIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+              </svg>{" "}
+              JobSphere@gmail.com
+            </div>
             <div className="phoneNumber">
               {" "}
               <svg
@@ -285,7 +301,6 @@ const App = () => {
               007xxxxxxxx
             </div>
             <div className="contactsIcons">
-              
               <svg
                 className="facebookIcon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -320,9 +335,20 @@ const App = () => {
             </div>
           </div>
         </div>
-        <div className="copyRight">  <svg className="copyRightIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503"/>
-</svg>2025 JobSphere | All rights Reserved</div>
+        <div className="copyRight">
+          {" "}
+          <svg
+            className="copyRightIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503" />
+          </svg>
+          2025 JobSphere | All rights Reserved
+        </div>
       </footer>
     </div>
   );

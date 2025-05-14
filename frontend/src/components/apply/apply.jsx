@@ -57,7 +57,7 @@ function apply() {
         )
         .then((result) => {
           console.log(result);
-          setResultMessage();
+         
           setShoweAlertMessage(true);
           console.log("showeAlertMessage: ", showeAlertMessage);
           setResultMessage(result.data.message);
@@ -66,7 +66,7 @@ function apply() {
           setTimeout(() => {
             setShoweAlertMessage(false);
             navigate("/");
-          }, 3000);
+          }, 2000);
         })
         .catch((error) => {
           console.log(error);
@@ -75,7 +75,7 @@ function apply() {
           setTimeout(() => {
             setShoweAlertMessage(false);
             navigate("/");
-          }, 3000);
+          }, 2000);
         });
       })
       .catch(err => console.error("Upload error:", err));

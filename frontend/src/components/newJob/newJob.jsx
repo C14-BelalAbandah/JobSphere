@@ -12,6 +12,9 @@ function newJob() {
     setResultMessage,
     showeAlertMessage,
     setShoweAlertMessage,
+    setLoginToggle,
+setRigisterToggle,
+setUserInfo
   } = useContext(toggleContext);
   const [token, setToken] = useState("");
   const [title, setTitle] = useState("");
@@ -21,6 +24,18 @@ function newJob() {
   const [experince, setExperince] = useState("");
   const [role, setRole] = useState("");
   const [salaryRange, setSalaryRange] = useState("");
+
+  if (token !== null) {
+    setLoginToggle(true);
+    setRigisterToggle(true);
+    setUserInfo(true);
+   
+  } else {
+    setLoginToggle(false);
+    setRigisterToggle(false);
+    setUserInfo(false);
+    
+  }
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));

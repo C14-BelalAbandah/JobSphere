@@ -31,7 +31,7 @@
 .ExperinceH,
 .RoleH,
 .SalaryRangeH {
-  font-size: large;
+  font-size: medium;
   border-bottom: solid 1px black;
 }
 .jobsPage {
@@ -114,11 +114,11 @@
   padding: 15px;
   margin: 2%;
   margin-top: 85px;
- 
+
   position: sticky;
   top: 10px;
   padding: 2%;
-  background:#F0F4F8;
+  background: #f0f4f8;
   margin-right: 70px;
 }
 
@@ -150,8 +150,43 @@
   border-radius: 20px;
 }
 
+@media (max-width: 500px) {
+  .JobTitleH,
+  .DescriptionH,
+  .LocationH,
+  .requirmentsH,
+  .ExperinceH,
+  .RoleH,
+  .SalaryRangeH {
+    font-size: medium;
+    border-bottom: solid 1px black;
+  }
 
-@media (max-width: 500px){
+  .jobTitle {
+    font-size: medium;
+    font-weight: bold;
+  }
 
-  
+  .locationPart {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    align-self: center;
+    font-size: medium;
+    align-items: self-end;
+  }
+
+  .jobBox {
+    display: flex
+;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid rgb(229, 231, 235) 2px;
+    width: 96%;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 10px;
+    gap: 20px;
+}
 }

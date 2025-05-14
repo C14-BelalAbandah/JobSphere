@@ -25,7 +25,7 @@ function register() {
       .then((result) => {
         console.log(result);
         console.log("result ", result);
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         console.log("errorrrrrrr ", error);

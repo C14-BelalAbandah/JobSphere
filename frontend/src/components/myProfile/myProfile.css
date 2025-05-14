@@ -108,6 +108,12 @@
   font-weight: bold;
 }
 
+.editAndDelete {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+}
+
 @media (max-width: 500px) {
   .jobDetails {
     display: flex;
@@ -125,28 +131,25 @@
     font-size: smaller;
   }
 
-
   .JobTitleH,
-.DescriptionH,
-.LocationH,
-.requirmentsH,
-.ExperinceH,
-.RoleH,
-.SalaryRangeH {
-  font-size: small;
-  border-bottom: solid 1px black;
-}
+  .DescriptionH,
+  .LocationH,
+  .requirmentsH,
+  .ExperinceH,
+  .RoleH,
+  .SalaryRangeH {
+    font-size: medium;
+    border-bottom: solid 1px black;
+  }
 
-.numberOfApplicationsH {
-  font-size: smaller;
-  border-bottom: solid 1px black;
-  cursor: pointer;
-}
+  .numberOfApplicationsH {
+    font-size: smaller;
+    border-bottom: solid 1px black;
+    cursor: pointer;
+  }
 
-.editJobButton
- {
-    display: flex
-;
+  .editJobButton {
+    display: flex;
     align-self: center;
     background-color: #6e00be;
     color: white;
@@ -154,13 +157,10 @@
     cursor: pointer;
     border-radius: 10px;
     padding: 7px;
-}
+  }
 
-.viewButton
-
- {
-    display: flex
-;
+  .viewButton {
+    display: flex;
     align-self: center;
     background-color: #6e00be;
     color: white;
@@ -170,18 +170,24 @@
     padding: 1px;
     padding-left: 2px;
     padding-right: 2px;
-}
+  }
 
+  .myPostedJobs,
+  .myapplication {
+    display: flex;
+    align-items: start;
+    margin-left: 5vw;
+    font-size: large;
+    border-bottom: solid 1px black;
+    padding-bottom: 2px;
+    justify-self: start;
+    color: #6e00be;
+  }
 
-.myPostedJobs, .myapplication {
-  display: flex
+  .postedJobsSection, .AllApplications {
+    display: grid
 ;
-  align-items: start;
-  margin-left: 5vw;
-  font-size: large;
-  border-bottom: solid 1px black;
-  padding-bottom: 2px;
-  justify-self: start;
-  color: #6e00be;
+    grid-template-columns: 1fr;
+    justify-items: center;
 }
 }

@@ -4,7 +4,8 @@ import axios from "axios";
 import "./jobs.css";
 import { toggleContext } from "../../App";
 import { useNavigate } from "react-router-dom";
-
+import { useMediaQuery } from "react-responsive";
+import { FillLightAction } from "@cloudinary/url-gen/actions/adjust/FillLightAction";
 function jobs() {
   const {
     loginToggle,
@@ -17,19 +18,29 @@ function jobs() {
     setUserName,
     applyJob,
     setApplyJob,
-    role, setRole,
-    showAddPost, setShowAddPost,
+    role,
+    setRole,
+    showAddPost,
+    setShowAddPost,
+    jobIndex,
+    setJobIndex,
   } = useContext(toggleContext);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [allJobs, setAllJobs] = useState([]);
   const [allJobsAfterFilteration, setAllJobsAfterFilteration] = useState([]);
   const [jobDetails, setJobDetails] = useState(false);
-  const [jobIndex, setJobIndex] = useState(0);
   const [jobTitle, setJobTitle] = useState("");
   const [token, setToken] = useState("");
   const [searchResults, setSearchResults] = useState(false);
   const [showeAlertMessage, setShoweAlertMessage] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+
+  const isDesktop = useMediaQuery({ query: "(max-width: 500px)" });
+  console.log("isDesktop: ", isDesktop);
+
+  console.log("allJobs: ",allJobs);
+  localStorage.setItem("allJobs",JSON.stringify(allJobs))
+  
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -37,10 +48,9 @@ function jobs() {
   console.log(token);
 
   if (role === "recruiter") {
-    setShowAddPost(true)
-    
+    setShowAddPost(true);
   } else {
-    setShowAddPost(false)
+    setShowAddPost(false);
   }
 
   if (token !== null) {
@@ -90,6 +100,7 @@ function jobs() {
 
   return (
     <div className="jobsPage">
+    
       <div className="searchSection">
         <input
           className="searchBar"
@@ -105,9 +116,17 @@ function jobs() {
             findJob();
           }}
         >
-          <svg className="searchIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-</svg>
+          <svg
+            className="searchIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
           Search
         </button>
       </div>
@@ -149,14 +168,20 @@ function jobs() {
                       className="detailsButton"
                       id={i}
                       onClick={(e) => {
-                        setJobDetails(true);
-                        setJobIndex(e.target.id);
-                        console.log(e.target.id);
-                        console.log("jobIndex: ", jobIndex);
-                        console.log(
-                          "jobDetails[jobIndex]: ",
-                          allJobs[jobIndex]
-                        );
+                        if (isDesktop) {
+                          navigate("/jobDetails");
+                          setJobIndex(e.target.id);
+
+                        } else {
+                          setJobDetails(true);
+                          setJobIndex(e.target.id);
+                          console.log(e.target.id);
+                          console.log("jobIndex: ", jobIndex);
+                          console.log(
+                            "jobDetails[jobIndex]: ",
+                            allJobs[jobIndex]
+                          );
+                        }
                       }}
                     >
                       Details
@@ -192,7 +217,7 @@ function jobs() {
                   <strong className="SalaryRangeH">Salary Range</strong>:{" "}
                   {allJobs[jobIndex].salaryRange}
                 </div>
-                
+
                 <div className="locationPart">
                   <svg
                     className="locationIcon"
@@ -217,10 +242,10 @@ function jobs() {
                   onClick={(e) => {
                     console.log(e.target.id);
                     console.log(allJobs[jobIndex]);
-                    setApplyJob(allJobs[jobIndex])
-                    console.log("applyJob: ",applyJob);
-                    
-                    navigate("/applyNow")
+                    setApplyJob(allJobs[jobIndex]);
+                    console.log("applyJob: ", applyJob);
+
+                    navigate("/applyNow");
                   }}
                 >
                   Apply Now
@@ -250,7 +275,6 @@ function jobs() {
                       </strong>: {ele.description}
                     </div>
 
-                    
                     <div className="locationPart">
                       {" "}
                       <svg
@@ -271,14 +295,20 @@ function jobs() {
                       className="detailsButton"
                       id={i}
                       onClick={(e) => {
-                        setJobDetails(true);
-                        setJobIndex(e.target.id);
-                        console.log(e.target.id);
-                        console.log("jobIndex: ", jobIndex);
-                        console.log(
-                          "jobDetails[jobIndex]: ",
-                          allJobsAfterFilteration[jobIndex]
-                        );
+                        if (isDesktop) {
+                          navigate("/jobDetails");
+                          setJobIndex(e.target.id);
+
+                        } else {
+                          setJobDetails(true);
+                          setJobIndex(e.target.id);
+                          console.log(e.target.id);
+                          console.log("jobIndex: ", jobIndex);
+                          console.log(
+                            "jobDetails[jobIndex]: ",
+                            allJobs[jobIndex]
+                          );
+                        }
                       }}
                     >
                       Details
@@ -294,7 +324,7 @@ function jobs() {
                   <strong className="JobTitleH"> Job Title</strong>:{" "}
                   {allJobsAfterFilteration[jobIndex].title}
                 </div>
-                <div >
+                <div>
                   <strong className="DescriptionH">Description</strong>:{" "}
                   {allJobsAfterFilteration[jobIndex].description}
                 </div>
@@ -332,15 +362,19 @@ function jobs() {
                   <strong className="LocationH">Poster Email</strong>:{" "}
                   {allJobsAfterFilteration[jobIndex].jobPoster.email}
                 </div>
-                <button className="applyNow"
-                onClick={(e) => {
-                  console.log(e.target.id);
-                  console.log(allJobsAfterFilteration[jobIndex]);
-                  setApplyJob(allJobsAfterFilteration[jobIndex])
-                  console.log("applyJob: ",applyJob);
-                  
-                  navigate("/applyNow")
-                }}>Apply Now</button>
+                <button
+                  className="applyNow"
+                  onClick={(e) => {
+                    console.log(e.target.id);
+                    console.log(allJobsAfterFilteration[jobIndex]);
+                    setApplyJob(allJobsAfterFilteration[jobIndex]);
+                    console.log("applyJob: ", applyJob);
+
+                    navigate("/applyNow");
+                  }}
+                >
+                  Apply Now
+                </button>
               </div>
             )}
           </div>

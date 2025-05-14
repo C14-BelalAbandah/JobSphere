@@ -19,6 +19,10 @@ function myProfile() {
     setResultMessage,
     showeAlertMessage,
     setShoweAlertMessage,
+    loginToggle,
+    setLoginToggle,
+    registerToggle,
+    setRigisterToggle,
   } = useContext(toggleContext);
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token") || "");
@@ -28,6 +32,7 @@ function myProfile() {
   const [myApplications, setMyApplications] = useState([]);
   const [noApplicationsMessage, setNoApplicationsmessage] = useState(false);
   const [applicationsDiv, setApplicationsDiv] = useState(false)
+
 
   console.log('userId:',userId);
   console.log(role);
@@ -45,6 +50,8 @@ function myProfile() {
           console.log(result);
           setMyJobs(result.data.data);
           setShowPostedJobs(true);
+ 
+          
         })
         .catch((error) => {
           console.log(error);
@@ -67,6 +74,7 @@ function myProfile() {
           console.log("check: ",result.data.data);
           console.log("result.data.data.jobId: ",result.data.data.jobId);
           
+          
 
           if (result.data.data.length===0) {
             setNoApplicationsmessage(true);
@@ -82,6 +90,42 @@ function myProfile() {
           console.log(error);
         });
     }, []);
+
+    
+  }
+
+  if (token !== null) {
+    setLoginToggle(true);
+    setRigisterToggle(true);
+   
+  } else {
+    setLoginToggle(false);
+    setRigisterToggle(false);
+    
+  }
+  const deleteJob = (idOftheJob)=>{
+    
+    
+    axios.delete(`http://localhost:5000/jobs/${idOftheJob}`, {headers:{
+      Authorization: `bearer ${token}`
+    }})
+    .then((result)=>{
+      setShoweAlertMessage(true);
+      console.log("showeAlertMessage: ", showeAlertMessage);
+      setResultMessage("The Job Has Been deleted");
+     
+      
+      setTimeout(() => {
+        setShoweAlertMessage(false);
+        navigate("/myprofile");
+      }, 2000);
+
+    })
+    .catch((error)=>{
+      console.log(error);
+      console.log("ggggggggggggggggggg: ",idOftheJob);
+      
+    })
   }
 
 
@@ -141,6 +185,8 @@ function myProfile() {
                       View
                     </button>
                   </div>
+                  <div className="editAndDelete">
+
                   <button
                     className="editJobButton"
                     onClick={() => {
@@ -149,8 +195,22 @@ function myProfile() {
                       navigate("editJob");
                     }}
                   >
+                    
                     Edit Job
                   </button>
+
+                  <button
+                    className="editJobButton"
+                    onClick={() => {
+                      console.log(ele._id);
+                      setSelectedJob();
+                      deleteJob(ele._id)
+                    }}
+                  >
+                    Delete Job
+                  </button>
+                  </div>
+                  
                 </div>
               );
             })}
@@ -206,6 +266,7 @@ function myProfile() {
 
           </div>}
         </div>}
+        {showeAlertMessage && <div className="alertMessage">{resultMessage}</div>}
     </div>
   );
 }

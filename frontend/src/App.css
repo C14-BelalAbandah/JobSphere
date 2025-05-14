@@ -235,15 +235,13 @@ body {
   }
 
   .registerIcon {
-     font-size: large; 
-    cursor: pointer; 
+    font-size: large;
+    cursor: pointer;
     background-color: #f0f4f8;
     color: rgb(252, 89, 18);
     font-weight: bold;
     border: rgba(229, 231, 235, 0.658);
-}
-
-
+  }
 
   .iconOfRegister {
     display: none;
@@ -252,7 +250,7 @@ body {
     position: relative;
     top: 3px;
     right: 3px;
-}
+  }
 
   .loginIcon {
     font-size: large;
@@ -338,8 +336,9 @@ body {
     background-color: #1d1934;
     color: white;
     padding: 3vh;
-    position: relative;
-    top: 38vh;
+    
+   position: relative;
+    top: 45vh;
     left: 0;
     right: 0;
     bottom: 0;
@@ -368,33 +367,29 @@ body {
     font-size: smaller;
   }
 
-
-
   .footerDetails {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 12vw;
-
   }
 
-  .facebookIcon, .instagramIcon, .linkedinIcon {
+  .facebookIcon,
+  .instagramIcon,
+  .linkedinIcon {
     width: 21%;
     height: 22px;
-
-
   }
 
   .emailIcon {
     width: 14px;
     height: 14px;
-}
+  }
 
-.contactsIcons {
-  display: flex;
-  flex-direction: row;
-  gap: 3vw;
-}
-
+  .contactsIcons {
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+  }
 }
