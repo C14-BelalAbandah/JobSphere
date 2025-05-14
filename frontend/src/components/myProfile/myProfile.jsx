@@ -31,12 +31,7 @@ function myProfile() {
   const [showApplications, setShowApplications] = useState(false);
   const [myApplications, setMyApplications] = useState([]);
   const [noApplicationsMessage, setNoApplicationsmessage] = useState(false);
-  const [applicationsDiv, setApplicationsDiv] = useState(false)
-
-
-  console.log('userId:',userId);
-  console.log(role);
-  console.log("myApplications: ", myApplications);
+  const [applicationsDiv, setApplicationsDiv] = useState(false);
 
   if (role === "recruiter") {
     useEffect(() => {
@@ -47,22 +42,13 @@ function myProfile() {
           },
         })
         .then((result) => {
-          console.log(result);
           setMyJobs(result.data.data);
           setShowPostedJobs(true);
- 
-          
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     }, []);
   } else if (role === "job_seeker") {
-    console.log("in get");
-    
     useEffect(() => {
-      console.log("in useEf");
-      
       axios
         .get(`http://localhost:5000/applications/${userId}`, {
           headers: {
@@ -71,63 +57,43 @@ function myProfile() {
         })
         .then((result) => {
           setShowApplications(true);
-          console.log("check: ",result.data.data);
-          console.log("result.data.data.jobId: ",result.data.data.jobId);
-          
-          
 
-          if (result.data.data.length===0) {
+          if (result.data.data.length === 0) {
             setNoApplicationsmessage(true);
-            console.log("no applications");
-            
           } else {
-            setApplicationsDiv(true)
+            setApplicationsDiv(true);
             setMyApplications(result.data.data);
-            console.log("applications:," ,result.data.data);
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     }, []);
-
-    
   }
 
   if (token !== null) {
     setLoginToggle(true);
     setRigisterToggle(true);
-   
   } else {
     setLoginToggle(false);
     setRigisterToggle(false);
-    
   }
-  const deleteJob = (idOftheJob)=>{
-    
-    
-    axios.delete(`http://localhost:5000/jobs/${idOftheJob}`, {headers:{
-      Authorization: `bearer ${token}`
-    }})
-    .then((result)=>{
-      setShoweAlertMessage(true);
-      console.log("showeAlertMessage: ", showeAlertMessage);
-      setResultMessage("The Job Has Been deleted");
-     
-      
-      setTimeout(() => {
-        setShoweAlertMessage(false);
-        navigate("/myprofile");
-      }, 2000);
+  const deleteJob = (idOftheJob) => {
+    axios
+      .delete(`http://localhost:5000/jobs/${idOftheJob}`, {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        setShoweAlertMessage(true);
+        setResultMessage("The Job Has Been deleted");
 
-    })
-    .catch((error)=>{
-      console.log(error);
-      console.log("ggggggggggggggggggg: ",idOftheJob);
-      
-    })
-  }
-
+        setTimeout(() => {
+          setShoweAlertMessage(false);
+          navigate("/myprofile");
+        }, 2000);
+      })
+      .catch((error) => {});
+  };
 
   return (
     <div className="myProfilePage">
@@ -177,7 +143,6 @@ function myProfile() {
                     <button
                       className="viewButton"
                       onClick={() => {
-                        console.log(ele._id);
                         setSelectedJob(ele._id);
                         navigate("applications");
                       }}
@@ -186,87 +151,98 @@ function myProfile() {
                     </button>
                   </div>
                   <div className="editAndDelete">
+                    <button
+                      className="editJobButton"
+                      onClick={() => {
+                        setSelectedJob(ele._id);
+                        navigate("editJob");
+                      }}
+                    >
+                      Edit Job
+                    </button>
 
-                  <button
-                    className="editJobButton"
-                    onClick={() => {
-                      console.log(ele._id);
-                      setSelectedJob(ele._id);
-                      navigate("editJob");
-                    }}
-                  >
-                    
-                    Edit Job
-                  </button>
-
-                  <button
-                    className="editJobButton"
-                    onClick={() => {
-                      console.log(ele._id);
-                      setSelectedJob();
-                      deleteJob(ele._id)
-                    }}
-                  >
-                    Delete Job
-                  </button>
+                    <button
+                      className="editJobButton"
+                      onClick={() => {
+                        setSelectedJob();
+                        deleteJob(ele._id);
+                      }}
+                    >
+                      Delete Job
+                    </button>
                   </div>
-                  
                 </div>
               );
             })}
           </div>
         </div>
       )}
-      {showApplications && <div className="showApplicationsDiv">
-        {noApplicationsMessage && <div className="noApplicationsMessageDiv">
-          <div className="noApplicationMessage"> You Have No Applications </div>
-          <button className="seejobsButton" onClick={()=>{
-            navigate("/")
-          }}> See Jobs</button>
-          </div>}
-        {applicationsDiv && <div className="applicationsDiv">
-          <div className="myapplication"> Your Application: </div>
-          <div className="AllApplications"> {myApplications.map((ele,i)=>{
-            console.log("jobId:",ele);
-            
-            return (
-              <div key={i} className="jobDetails">
-              <div>
-                <strong className="JobTitleH"> Job Title</strong>:{" "}
-                {ele.jobId.title}
-              </div>
-              <div>
-                <strong className="DescriptionH">Description</strong>:{" "}
-                {ele.jobId.description}
-              </div>
-              <div>
-                <strong className="requirmentsH">Requirments</strong>:{" "}
-                {ele.jobId.requirements}
-              </div>
-              <div>
+      {showApplications && (
+        <div className="showApplicationsDiv">
+          {noApplicationsMessage && (
+            <div className="noApplicationsMessageDiv">
+              <div className="noApplicationMessage">
                 {" "}
-                <strong className="LocationH">Location</strong>:{" "}
-                {ele.jobId.location}
+                You Have No Applications{" "}
               </div>
-              <div>
-                <strong className="ExperinceH">Experience</strong>:{" "}
-                {ele.jobId.experince}
-              </div>
-              <div>
-                <strong className="RoleH">Role</strong>: {ele.role}
-              </div>
-              <div>
+              <button
+                className="seejobsButton"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
                 {" "}
-                <strong className="SalaryRangeH">Salary Range</strong>:{" "}
-                {ele.jobId.salaryRange}
+                See Jobs
+              </button>
+            </div>
+          )}
+          {applicationsDiv && (
+            <div className="applicationsDiv">
+              <div className="myapplication"> Your Application: </div>
+              <div className="AllApplications">
+                {" "}
+                {myApplications.map((ele, i) => {
+                  return (
+                    <div key={i} className="jobDetails">
+                      <div>
+                        <strong className="JobTitleH"> Job Title</strong>:{" "}
+                        {ele.jobId.title}
+                      </div>
+                      <div>
+                        <strong className="DescriptionH">Description</strong>:{" "}
+                        {ele.jobId.description}
+                      </div>
+                      <div>
+                        <strong className="requirmentsH">Requirments</strong>:{" "}
+                        {ele.jobId.requirements}
+                      </div>
+                      <div>
+                        {" "}
+                        <strong className="LocationH">Location</strong>:{" "}
+                        {ele.jobId.location}
+                      </div>
+                      <div>
+                        <strong className="ExperinceH">Experience</strong>:{" "}
+                        {ele.jobId.experince}
+                      </div>
+                      <div>
+                        <strong className="RoleH">Role</strong>: {ele.role}
+                      </div>
+                      <div>
+                        {" "}
+                        <strong className="SalaryRangeH">
+                          Salary Range
+                        </strong>: {ele.jobId.salaryRange}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              </div>
-            )
-          })}</div>
-
-          </div>}
-        </div>}
-        {showeAlertMessage && <div className="alertMessage">{resultMessage}</div>}
+            </div>
+          )}
+        </div>
+      )}
+      {showeAlertMessage && <div className="alertMessage">{resultMessage}</div>}
     </div>
   );
 }

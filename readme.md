@@ -1,8 +1,4 @@
-<p align="center">
-<a href="https://www.meraki-academy.org" target="_blank" rel="noopener noreferrer">
- <img width="400px" height="100px" src="https://www.meraki-academy.org/assets/img/logov02.svg" alt="Project logo">
- </a>
-</p>
+
 
 <h3 align="center">Project Title
 </h3>
@@ -33,7 +29,7 @@ Ex. Are you looking for a quick and easy way to action, action, and action? The 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
 
 ### Prerequisites
 

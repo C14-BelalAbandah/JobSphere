@@ -30,22 +30,17 @@ function jobs() {
   const [allJobsAfterFilteration, setAllJobsAfterFilteration] = useState([]);
   const [jobDetails, setJobDetails] = useState(false);
   const [jobTitle, setJobTitle] = useState("");
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState("notoken");
   const [searchResults, setSearchResults] = useState(false);
   const [showeAlertMessage, setShoweAlertMessage] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
   const isDesktop = useMediaQuery({ query: "(max-width: 500px)" });
-  console.log("isDesktop: ", isDesktop);
-
-  console.log("allJobs: ",allJobs);
-  localStorage.setItem("allJobs",JSON.stringify(allJobs))
-  
+  localStorage.setItem("allJobs", JSON.stringify(allJobs));
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
-  console.log(token);
 
   if (role === "recruiter") {
     setShowAddPost(true);
@@ -67,13 +62,9 @@ function jobs() {
     axios
       .get("http://localhost:5000/jobs")
       .then((result) => {
-        console.log(result.data.data);
-        console.log(result.data.data[0].jobPoster.email);
         setAllJobs(result.data.data);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
   const findJob = () => {
@@ -84,29 +75,25 @@ function jobs() {
         },
       })
       .then((result) => {
-        console.log(result.data);
         setAllJobsAfterFilteration(result.data.data);
         setSearchResults(true);
       })
       .catch((error) => {
-        console.log("error: ", error.response.data.message);
         setShoweAlertMessage(true);
         setAlertMessage(error.response.data.message);
         setTimeout(() => {
           setShoweAlertMessage(false);
-        }, 3000);
+        }, 2000);
       });
   };
 
   return (
     <div className="jobsPage">
-    
       <div className="searchSection">
         <input
           className="searchBar"
           placeholder="Search for Job By Title"
           onChange={(e) => {
-            console.log(e.target.value);
             setJobTitle(e.target.value);
           }}
         ></input>
@@ -171,16 +158,9 @@ function jobs() {
                         if (isDesktop) {
                           navigate("/jobDetails");
                           setJobIndex(e.target.id);
-
                         } else {
                           setJobDetails(true);
                           setJobIndex(e.target.id);
-                          console.log(e.target.id);
-                          console.log("jobIndex: ", jobIndex);
-                          console.log(
-                            "jobDetails[jobIndex]: ",
-                            allJobs[jobIndex]
-                          );
                         }
                       }}
                     >
@@ -240,12 +220,17 @@ function jobs() {
                   className="applyNow"
                   id={jobIndex}
                   onClick={(e) => {
-                    console.log(e.target.id);
-                    console.log(allJobs[jobIndex]);
-                    setApplyJob(allJobs[jobIndex]);
-                    console.log("applyJob: ", applyJob);
-
-                    navigate("/applyNow");
+                    if (token === null) {
+                      setShoweAlertMessage(true);
+                      setAlertMessage("Login to Apply For Jobs");
+                      navigate("/login");
+                      setTimeout(() => {
+                        setShoweAlertMessage(false);
+                      }, 2000);
+                    } else {
+                      setApplyJob(allJobs[jobIndex]);
+                      navigate("/applyNow");
+                    }
                   }}
                 >
                   Apply Now
@@ -298,16 +283,9 @@ function jobs() {
                         if (isDesktop) {
                           navigate("/jobDetails");
                           setJobIndex(e.target.id);
-
                         } else {
                           setJobDetails(true);
                           setJobIndex(e.target.id);
-                          console.log(e.target.id);
-                          console.log("jobIndex: ", jobIndex);
-                          console.log(
-                            "jobDetails[jobIndex]: ",
-                            allJobs[jobIndex]
-                          );
                         }
                       }}
                     >
@@ -365,12 +343,19 @@ function jobs() {
                 <button
                   className="applyNow"
                   onClick={(e) => {
-                    console.log(e.target.id);
-                    console.log(allJobsAfterFilteration[jobIndex]);
-                    setApplyJob(allJobsAfterFilteration[jobIndex]);
-                    console.log("applyJob: ", applyJob);
+                    if (token === null) {
+                      setShoweAlertMessage(true);
+                      setAlertMessage("Login to Apply For Jobs");
+                      navigate("/login");
+                      setTimeout(() => {
+                        setShoweAlertMessage(false);
+                      }, 2000);
+                    } else {
+                      setApplyJob(allJobsAfterFilteration[jobIndex]);
+                      navigate("/applyNow");
+                    }
 
-                    navigate("/applyNow");
+                    
                   }}
                 >
                   Apply Now

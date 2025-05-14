@@ -40,7 +40,7 @@ setUserInfo
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
-  console.log(token);
+
 
   const handleAddJob = () => {
     axios
@@ -62,11 +62,7 @@ setUserInfo
         }
       )
       .then((result) => {
-        console.log("token: ", token);
-        console.log("result: ", result);
         setShoweAlertMessage(true);
-        console.log("showeAlertMessage: ", showeAlertMessage);
-        console.log("result.data.message: ",result.data.message);
         
         setResultMessage(result.data.message);
         setTimeout(() => {
@@ -75,8 +71,6 @@ setUserInfo
         }, 3000);
       })
       .catch((error) => {
-        console.log("  token:  ", token);
-        console.log("error: ", error);
         setShoweAlertMessage(true);
         setResultMessage(error.response.data.message);
         setTimeout(() => {

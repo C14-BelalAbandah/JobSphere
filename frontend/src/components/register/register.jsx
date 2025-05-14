@@ -23,12 +23,9 @@ function register() {
         role,
       })
       .then((result) => {
-        console.log(result);
-        console.log("result ", result);
         navigate("/login");
       })
       .catch((error) => {
-        console.log("errorrrrrrr ", error);
         setRegisterFailedMessage(error.response.data.message);
         setRegisterFailed(true);
         setTimeout(() => {
@@ -75,9 +72,7 @@ function register() {
           <select
             className="roleSelector"
             onInput={(e) => {
-              console.log(e.target.value);
               setRole(e.target.value);
-              console.log(role);
             }}
           >
             <option> recruiter</option>

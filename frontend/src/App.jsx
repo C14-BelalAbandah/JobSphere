@@ -13,7 +13,6 @@ import MyProfile from "./components/myProfile/myProfile";
 import Applications from "./components/applications/applications";
 import EditJob from "./components/editJob/editJob";
 import { logOut } from "./components/redux/slice/tokenSlice";
-import UploadWedget from "./components/uploadWedget/uploadWedget";
 import JobDetails from "./components/jobDetails/jobDetails";
 export const toggleContext = createContext();
 
@@ -38,12 +37,10 @@ const App = () => {
   const [jobIndex, setJobIndex] = useState(0);
 
   const token = useSelector((state) => {
-    console.log("state:");
 
     return state.tokenReducer.token;
   });
 
-  console.log("Redux: ", token);
   useEffect(() => {
     if (token === null) {
       setShowLogout(false);
@@ -58,8 +55,6 @@ const App = () => {
 
     dispatch(logOut());
   };
-
-  console.log("showLogout: ", showLogout);
 
   return (
     <div className="App">
@@ -252,7 +247,6 @@ const App = () => {
           <Route path="/myProfile" element={<MyProfile />} />
           <Route path="/myProfile/applications" element={<Applications />} />
           <Route path="/myProfile/editJob" element={<EditJob />} />
-          <Route path="/upload" element={<UploadWedget />} />
           <Route path="/jobDetails" element={<JobDetails />} />
         </Routes>
       </toggleContext.Provider>

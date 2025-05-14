@@ -24,11 +24,7 @@ function login() {
   const [loginFailed, setLoginFailed] = useState(false);
   const [token, setToken] = useState("");
 
-  console.log(role);
-
-  console.log(token);
   if (token !== "") {
-    console.log(token);
     setLoginToggle(true);
     setRigisterToggle(true);
   }
@@ -40,10 +36,8 @@ function login() {
         password,
       })
       .then((result) => {
-        console.log(result.data.token);
         setToken(result.data.token);
         localStorage.setItem("token", result.data.token);
-        console.log("result ", result.data.data._id);
         let modifiedFirstName = result.data.data.firstName.split("");
         modifiedFirstName[0] = result.data.data.firstName
           .split("")[0]
@@ -53,15 +47,12 @@ function login() {
         localStorage.setItem("role", result.data.data.role.role);
         localStorage.setItem("userId", result.data.data._id);
         setRole(result.data.data.role.role);
-        console.log("modifiedFirstName:   ", modifiedFirstName);
-
         navigate("/");
         setLoginToggle(true);
         setRigisterToggle(true);
         setShowLogout(true);
       })
       .catch((error) => {
-        console.log("error", error);
         setLoginFailedMessage(error.response.data.message);
         setLoginFailed(true);
         setTimeout(() => {

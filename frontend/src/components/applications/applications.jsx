@@ -8,13 +8,10 @@ import login from "../login/login";
 function applications() {
   const { myJobs, setMyJobs, selectedJob, setSelectedJob } =
     useContext(toggleContext);
-  console.log(myJobs);
 
   const jobApplications = myJobs.find((ele, i) => {
     return ele._id === selectedJob;
   });
-
-  console.log(jobApplications);
 
   return (
     <div>

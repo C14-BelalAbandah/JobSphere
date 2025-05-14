@@ -10,7 +10,13 @@ const tokenSlice = createSlice({
     logOut: (state, action) => {
       console.log("state:", state);
       console.log("action: ", action);
-      localStorage.clear();
+      localStorage.removeItem("token")
+      localStorage.removeItem("userName")
+      localStorage.removeItem("userId")
+      localStorage.removeItem("role")
+
+
+
       location.reload();
       
     },

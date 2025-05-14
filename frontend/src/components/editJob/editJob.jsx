@@ -44,11 +44,6 @@ function editJob() {
   );
 
   const saveChange = () => {
-    if (newRequirments === "") {
-      console.log("tes");
-    }
-    console.log(newRequirments);
-
     axios
       .put(
         `http://localhost:5000/jobs/${selectedJob}`,
@@ -64,30 +59,22 @@ function editJob() {
         { headers: { Authorization: `bearer ${token}` } }
       )
       .then((result) => {
-        console.log(result);
         setShoweAlertMessage(true);
-        console.log("showeAlertMessage: ", showeAlertMessage);
-        console.log("result.data.message: ",result.data.message);
-        
         setResultMessage(result.data.message);
         setTimeout(() => {
           setShoweAlertMessage(false);
           navigate("/myProfile");
         }, 3000);
-      
       })
       .catch((error) => {
-        console.log(error);
         setShoweAlertMessage(true);
         setResultMessage(error.response.data.message);
         setTimeout(() => {
           setShoweAlertMessage(false);
-          
         }, 3000);
       });
   };
 
-  console.log(myJobs);
   return (
     <div className="editJobPage">
       <div className="headInEditJobPage"></div>
@@ -105,7 +92,7 @@ function editJob() {
                 setShowTitleInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showTitleInput && (
               <input
@@ -134,7 +121,7 @@ function editJob() {
                 setShowDescriptionInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showDescriptionInput && (
               <textarea
@@ -161,7 +148,7 @@ function editJob() {
                 setShowRequirmentsInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showRequirmentsInput && (
               <textarea
@@ -189,7 +176,7 @@ function editJob() {
                 setShowLocationInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showLocationInput && (
               <input
@@ -219,7 +206,7 @@ function editJob() {
                 setShowExperienceInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showExperienceInput && (
               <input
@@ -246,7 +233,7 @@ function editJob() {
                 setShowRoleInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showRoleInput && (
               <select
@@ -278,7 +265,7 @@ function editJob() {
                 setShowSalaryRangeInput(true);
               }}
             >
-              Edit 
+              Edit
             </button>
             {showSalaryRangeInput && (
               <input
@@ -296,8 +283,6 @@ function editJob() {
 
         <button
           onClick={() => {
-            console.log(newRole);
-
             saveChange();
           }}
           className="saveChangeButton"
