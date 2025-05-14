@@ -1,44 +1,40 @@
-
-.newJobPage{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: start;
-    margin-left: 30px;
-    margin-top: 50px;
-    gap: 15px;
+.newJobPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  margin-left: 30px;
+  margin-top: 50px;
+  gap: 15px;
 }
 
-.newJobInputs{
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 10px;
-column-gap: 30px;
-justify-items: start;
-margin-left: 30px;
-
-
+.newJobInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  column-gap: 30px;
+  justify-items: start;
+  margin-left: 30px;
 }
 
-.titleSec{
-    grid-column-start:1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-
+.titleSec {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
-.descriptionSec{
-   grid-column-start: 1;
-   grid-column-end: 3;
-   grid-row-start:2;
-   grid-row-end: 3;
+.descriptionSec {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
-.requirmentsSec{
-grid-column-start: 1;
-grid-column-end: 3;
-grid-row-start: 3;
-grid-row-end: 4;
+.requirmentsSec {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 .titleText,
@@ -47,14 +43,80 @@ grid-row-end: 4;
 .locationText,
 .experinceText,
 .roleText,
-.salaryRangeText{ display: flex;
-    align-self: start;
-    font-size: large;
-    margin-bottom: 5px;
-    margin-left: 10px;
+.salaryRangeText {
+  display: flex;
+  align-self: start;
+  font-size: large;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 
-.addJobButton{
+.addJobButton {
+  display: flex;
+  align-self: start;
+  background-color: #6e00be;
+  color: white;
+  font-size: large;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 16vw;
+}
+
+.textArea {
+  padding: 13px;
+  padding-right: 75px;
+  text-align: start;
+  border-radius: 5px;
+}
+
+.textArea::placeholder {
+  text-align: start;
+  font-size: large;
+}
+
+.selectRole {
+  padding: 12px;
+  padding-right: 135px;
+  text-align: start;
+  border-radius: 10px;
+}
+
+.textArea::placeholder{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: small;
+}
+
+@media (max-width: 500px) {
+  .newJobInputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    column-gap: 20px;
+    justify-items: start;
+    margin-left: 0px;
+  }
+
+  .titleSec {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  .descriptionSec {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  .requirmentsSec {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  .addJobButton {
     display: flex;
     align-self: start;
     background-color: #6e00be;
@@ -62,25 +124,6 @@ grid-row-end: 4;
     font-size: large;
     cursor: pointer;
     padding: 10px;
-    margin-left: 16vw;
+    margin-left: 35vw;
   }
-
-  .textArea{
-    padding: 13px;
-padding-right: 75px;
-    text-align: start;
-    border-radius:5px;
-  }
-
-  .textArea::placeholder{
-    text-align: start;
-    font-size: large;
-
-  }
-
-  .selectRole{
-    padding: 12px;
-    padding-right: 135px;
-    text-align: start;
-    border-radius:10px;
-  }
+}
