@@ -2,3 +2,55 @@ body{
     margin: 0;
     padding: 0;
 }
+
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.logo {
+    width: 35px;
+    height: 31px;
+    border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 18px;}
+
+h3{
+    display: flex;
+    margin-left: 20px;
+    border-bottom: solid 2px black;
+    width: 25%;
+    font-weight: bold;
+}
+
+p{
+    margin-left: 30px;
+}
+
+.gitBash{
+    border: solid 1px black;
+    background-color: rgb(169, 169, 169);
+    width: 40%;
+}
+
+h4{
+    margin-left: 20px;
+
+}
+.builtUsing{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+}
+
+.workFrame {
+    margin-left:80px;
+    width: 600px;
+    height: 170px;
+}
+
+
