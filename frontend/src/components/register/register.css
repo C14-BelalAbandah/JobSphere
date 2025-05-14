@@ -83,3 +83,19 @@ body{
     padding-right: 103px;
     
 }
+
+@media (max-width: 500px){
+
+    .registerImage{
+        display: none;
+        background-color: #F5F6F8;
+        margin-top: 100px;
+        background-color: #F5F6F8;
+        margin-top: 108px;
+        width: 35vw;
+        height: 45vh;
+        border-radius: 20px;
+      }
+
+}
+

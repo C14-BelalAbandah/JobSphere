@@ -64,3 +64,19 @@
   height: 45vh;
   border-radius: 20px;
 }
+
+
+@media (max-width: 500px){
+
+  .loginImage {
+    display: none;
+    background-color: #F0F4F8;
+    margin-top: 100px;
+    background-color: #f5f6f8;
+    margin-top: 108px;
+    width: 35vw;
+    height: 45vh;
+    border-radius: 20px;
+  }
+
+}

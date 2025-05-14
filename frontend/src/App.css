@@ -235,22 +235,27 @@ body {
   }
 
   .registerIcon {
-    cursor: pointer;
+     font-size: large; 
+    cursor: pointer; 
     background-color: #f0f4f8;
     color: rgb(252, 89, 18);
     font-weight: bold;
     border: rgba(229, 231, 235, 0.658);
-  }
+}
+
+
 
   .iconOfRegister {
-    width: 25px;
-    height: 23px;
+    display: none;
+    width: 15px;
+    height: 17px;
     position: relative;
     top: 3px;
     right: 3px;
-  }
+}
 
   .loginIcon {
+    font-size: large;
     cursor: pointer;
     background-color: #f0f4f8;
     color: rgb(4, 4, 185);
@@ -266,6 +271,7 @@ body {
   }
 
   .iconOfLogin {
+    display: none;
     width: 25px;
     height: 23px;
     position: relative;

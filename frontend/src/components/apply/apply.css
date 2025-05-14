@@ -21,7 +21,7 @@
   position: sticky;
   top: 10px;
   padding: 20px;
-  background: #F0F4F8;
+  background: #f0f4f8;
   margin-right: 70px;
 }
 
@@ -42,54 +42,96 @@
   align-items: start;
   gap: 10px;
   padding: 7px;
-
 }
-
 
 .firstNameText,
 .lastNameText,
-.educationText
-{
-    display: flex;
-    align-self: start;
-    font-size: large;
-    margin-bottom: 5px;
-    margin-left: 10px;
-  }
+.educationText {
+  display: flex;
+  align-self: start;
+  font-size: large;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
 
-  .star{
-    font-size: large;
-    color: red;
-  }
+.star {
+  font-size: large;
+  color: red;
+}
 
-  .enterDetails{
-    font-size:x-large;
-  }
+.enterDetails {
+  font-size: x-large;
+}
 
+.cvSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
 
-  .cvSection{
-    display: flex;
+.uploadButton {
+  display: flex;
+  align-self: center;
+  background-color: #6e00be;
+  color: white;
+
+  cursor: pointer;
+  padding: 5px;
+}
+
+.uploadYourCvText {
+  display: flex;
+  align-self: start;
+  font-size: large;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  border-bottom: black solid 2px;
+}
+.applicationDetails {
+  font-size: large;
+  
+}
+@media (max-width: 500px) {
+
+  .enterDetails {
+    margin-top: 5px;
+    font-size: medium;
+}
+  .applyForJob {
+    display: none;
     flex-direction: column;
-    gap: 1vh;
-    
-    
+    justify-content: start;
+    gap: 20px;
+    border: solid rgb(229, 231, 235) 2px;
+    width: 50%;
+    height: 90%;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 10px;
+    margin-top: 85px;
+    height: 500px;
+    position: sticky;
+    top: 10px;
+    padding: 20px;
+    background: #f0f4f8;
+    margin-right: 70px;
   }
 
-  .uploadButton {
-    display: flex;
-    align-self: center;
-    background-color: #6e00be;
-    color: white;
-    
-    cursor: pointer;
-    padding: 5px;
-  }
 
-  .uploadYourCvText{
-    display: flex;
-    align-self: start;
-    font-size: large;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    border-bottom: black solid 2px;
-  }
+  .applicationDetails
+
+ {
+    display: flex
+;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+    gap: 0px;
+    padding: 7px;
+}
+
+.applicationDetails {
+  font-size: large;
+  
+}
+}

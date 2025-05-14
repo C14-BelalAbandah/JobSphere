@@ -105,7 +105,7 @@ function editJob() {
                 setShowTitleInput(true);
               }}
             >
-              Edit Title
+              Edit 
             </button>
             {showTitleInput && (
               <input
@@ -134,7 +134,7 @@ function editJob() {
                 setShowDescriptionInput(true);
               }}
             >
-              Edit Description
+              Edit 
             </button>
             {showDescriptionInput && (
               <textarea
@@ -161,7 +161,7 @@ function editJob() {
                 setShowRequirmentsInput(true);
               }}
             >
-              Edit Requirments
+              Edit 
             </button>
             {showRequirmentsInput && (
               <textarea
@@ -189,7 +189,7 @@ function editJob() {
                 setShowLocationInput(true);
               }}
             >
-              Edit Location
+              Edit 
             </button>
             {showLocationInput && (
               <input
@@ -219,7 +219,7 @@ function editJob() {
                 setShowExperienceInput(true);
               }}
             >
-              Edit Experience
+              Edit 
             </button>
             {showExperienceInput && (
               <input
@@ -246,7 +246,7 @@ function editJob() {
                 setShowRoleInput(true);
               }}
             >
-              Edit Role
+              Edit 
             </button>
             {showRoleInput && (
               <select
@@ -278,7 +278,7 @@ function editJob() {
                 setShowSalaryRangeInput(true);
               }}
             >
-              Edit SalaryRange
+              Edit 
             </button>
             {showSalaryRangeInput && (
               <input
