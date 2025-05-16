@@ -89,7 +89,7 @@ function myProfile() {
 
         setTimeout(() => {
           setShoweAlertMessage(false);
-          navigate("/myprofile");
+          navigate("/myProfile");
         }, 2000);
       })
       .catch((error) => {});
@@ -164,8 +164,9 @@ function myProfile() {
                     <button
                       className="editJobButton"
                       onClick={() => {
-                        setSelectedJob();
+                        
                         deleteJob(ele._id);
+                        
                       }}
                     >
                       Delete Job

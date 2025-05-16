@@ -68,6 +68,7 @@ function jobs() {
   }, []);
 
   const findJob = () => {
+    setJobIndex(0)
     axios
       .get(`http://localhost:5000/jobs/jobByTitle/${jobTitle}`, {
         headers: {
@@ -85,8 +86,13 @@ function jobs() {
           setShoweAlertMessage(false);
         }, 2000);
       });
-  };
 
+      
+  };
+ console.log("allJobsAfterFilteration: ",allJobsAfterFilteration);
+ console.log("jobIndex: ",jobIndex);
+ 
+ 
   return (
     <div className="jobsPage">
       <div className="searchSection">
