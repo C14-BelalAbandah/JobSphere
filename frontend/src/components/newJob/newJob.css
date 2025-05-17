@@ -81,8 +81,8 @@
   border-radius: 10px;
 }
 
-.textArea::placeholder{
-  font-family: 'Times New Roman', Times, serif;
+.textArea::placeholder {
+  font-family: "Arial", Tahoma, Geneva, Verdana, sans-serif;
   font-size: small;
 }
 

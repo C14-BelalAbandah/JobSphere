@@ -10,11 +10,12 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: start;
-  border-bottom: solid 1px gray;
+ border-bottom: solid 1px gray;
   margin-top: 35px;
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 0;
+  border-radius: 10px;
 }
 .logo {
   border-radius: 25px;

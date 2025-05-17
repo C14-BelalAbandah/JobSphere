@@ -86,14 +86,7 @@ function editJob() {
             {jobApplications.title}{" "}
           </div>
           <div className="NewTitle">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowTitleInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showTitleInput && (
               <input
                 className="inputInEditJob"
@@ -105,6 +98,14 @@ function editJob() {
                 }}
               ></input>
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowTitleInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
 
@@ -115,14 +116,7 @@ function editJob() {
             {jobApplications.description}
           </div>
           <div className="NewDescription">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowDescriptionInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showDescriptionInput && (
               <textarea
                 className="inputInEditJob"
@@ -134,6 +128,14 @@ function editJob() {
                 }}
               />
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowDescriptionInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
         <div className="editRequirments">
@@ -142,14 +144,7 @@ function editJob() {
             {jobApplications.requirements}
           </div>
           <div className="NewRequirments">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowRequirmentsInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showRequirmentsInput && (
               <textarea
                 className="inputInEditJob"
@@ -161,6 +156,14 @@ function editJob() {
                 }}
               />
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowRequirmentsInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
         <div className="editLocation">
@@ -170,14 +173,7 @@ function editJob() {
             {jobApplications.location}
           </div>
           <div className="NewLocation">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowLocationInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showLocationInput && (
               <input
                 className="inputInEditJob"
@@ -190,6 +186,14 @@ function editJob() {
                 }}
               ></input>
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowLocationInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
         <div className="editExperience">
@@ -200,14 +204,7 @@ function editJob() {
           </div>
 
           <div className="NewExperince">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowExperienceInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showExperienceInput && (
               <input
                 className="inputInEditJob"
@@ -219,6 +216,14 @@ function editJob() {
                 }}
               ></input>
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowExperienceInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
         <div className="editRole">
@@ -227,14 +232,7 @@ function editJob() {
             <strong className="RoleH">Role:</strong> {jobApplications.role}
           </div>
           <div className="NewRole">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowRoleInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showRoleInput && (
               <select
                 className="selectRole"
@@ -250,6 +248,14 @@ function editJob() {
                 <option className="input">Full-Time</option>
               </select>
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowRoleInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
         <div className="editSalaryRange">
@@ -259,14 +265,7 @@ function editJob() {
             {jobApplications.salaryRange}
           </div>
           <div className="NewSalaryRange">
-            <button
-              className="editButton"
-              onClick={() => {
-                setShowSalaryRangeInput(true);
-              }}
-            >
-              Edit
-            </button>
+            
             {showSalaryRangeInput && (
               <input
                 className="inputInEditJob"
@@ -278,6 +277,14 @@ function editJob() {
                 }}
               ></input>
             )}
+            <button
+              className="editButton"
+              onClick={() => {
+                setShowSalaryRangeInput(true);
+              }}
+            >
+              Edit
+            </button>
           </div>
         </div>
 

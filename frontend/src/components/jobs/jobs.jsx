@@ -68,7 +68,7 @@ function jobs() {
   }, []);
 
   const findJob = () => {
-    setJobIndex(0)
+    setJobIndex(0);
     axios
       .get(`http://localhost:5000/jobs/jobByTitle/${jobTitle}`, {
         headers: {
@@ -81,20 +81,76 @@ function jobs() {
       })
       .catch((error) => {
         setShoweAlertMessage(true);
-        setAlertMessage(error.response.data.message);
+        setAlertMessage("No Jobs Found");
         setTimeout(() => {
           setShoweAlertMessage(false);
         }, 2000);
       });
-
-      
   };
- console.log("allJobsAfterFilteration: ",allJobsAfterFilteration);
- console.log("jobIndex: ",jobIndex);
- 
- 
+  const filterJobs = (title) => {
+    setJobIndex(0);
+    axios
+      .get(`http://localhost:5000/jobs/jobByTitle/${title}`, {
+        headers: {
+          authorization: `bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        if(result.data.data.length===0){
+          setShoweAlertMessage(true);
+        console.log("No Jobs Found");
+        
+        setAlertMessage("No Jobs Found");
+        setTimeout(() => {
+          setShoweAlertMessage(false);
+        }, 2000);
+
+        }else{
+setAllJobsAfterFilteration(result.data.data);
+        setSearchResults(true);
+        }
+        
+      })
+      .catch((error) => {
+        setShoweAlertMessage(true);
+        console.log("No Jobs Found");
+        
+        setAlertMessage("No Jobs Found");
+        setTimeout(() => {
+          setShoweAlertMessage(false);
+        }, 2000);
+      });
+  };
+  console.log("allJobsAfterFilteration: ", allJobsAfterFilteration);
+  console.log("jobIndex: ", jobIndex);
+
   return (
     <div className="jobsPage">
+      <div className="filtrationBar">
+        <button className="buttonInfiltrationBar" onClick={()=>{
+          filterJobs("alljobs")
+        }}>All Jobs</button>
+        <button className="buttonInfiltrationBar" onClick={()=>{
+          filterJobs("Engineer")
+        }}> Engineer</button>
+        <button className="buttonInfiltrationBar" onClick={()=>{
+          filterJobs("Developer")
+        }}>Developer</button>
+        <button className="buttonInfiltrationBar"
+        onClick={()=>{
+          filterJobs("service")
+        }}> Customer Service </button>
+        <button className="buttonInfiltrationBar" onClick={()=>{
+          filterJobs("Lawyer")
+        }}> Lawyer</button>
+        <button className="buttonInfiltrationBar" onClick={()=>{
+          filterJobs("Accountant")
+        }}>Accountant</button>
+        <button className="buttonInfiltrationBar" onClick={()=>{
+          filterJobs("Designer")
+        }}>Designer</button>
+        
+      </div>
       <div className="searchSection">
         <input
           className="searchBar"
@@ -360,8 +416,6 @@ function jobs() {
                       setApplyJob(allJobsAfterFilteration[jobIndex]);
                       navigate("/applyNow");
                     }
-
-                    
                   }}
                 >
                   Apply Now

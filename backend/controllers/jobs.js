@@ -250,13 +250,61 @@ const getJobByPosterId = (req, res) => {
 const getJobByTitle = (req, res) => {
   const jobTitle = req.params.jobTitle.toUpperCase();
   console.log("jobTitle: ", jobTitle);
+  jobsModel.find({})
+  .populate("jobPoster")
+  .then((result)=>{
+    const allJobs=[]
+    for (let i = 0; i < result.length; i++) {
+      console.log("result[i].title.toUpperCase(): ",result[i].title.toUpperCase());
+     // console.log("result[i]: ",result[i]);
+      
+      if(result[i].title.toUpperCase().includes(jobTitle) ){
+allJobs.push(result[i])
+console.log("i am in");
 
+      }
+    }
+    if(jobTitle==="ALLJOBS"){
+res.status(200).json({
+    data: result,
+    messgae:"No Jobs Found"
+   })
+    }else{
+if(allJobs.length===0){
+    console.log("no joobsss");
+    
+    res.status(200).json({
+    data: allJobs,
+    messgae:"No Jobs Found"
+   })
+   }else{
+res.status(200).json({
+    data: allJobs,
+    messgae:"allJobs"
+   })
+   }
+   console.log("allJobs: ",allJobs);
+    }
+    
+   
+   
+   
+   
+  })
+  .catch((error)=>{
+    res.status(501).json({
+      data: error,
+      message: "error in getting the jobs"
+    })
+  })
+  
+/*
   jobsModel
     .find({})
 
     .then((result) => {
       console.log(result);
-
+ 
       const titlesArray = result.map((ele, i) => {
         return ele.title;
       });
@@ -280,7 +328,17 @@ const getJobByTitle = (req, res) => {
       }
       console.log("jobByTitleArray", jobByTitleArray);
       const jobsArray = [];
-      const jobs = jobByTitleArray.map((ele, i) => {
+    const searchedJobs=  result.filter((ele,i)=>{
+        return ele.title=== jobTitle
+      })
+console.log("searchedJobs: ", searchedJobs);
+
+      res.status(200).json({
+        data:searchedJobs,
+        message: "dhiowhdowho"
+      })
+      
+     /* const jobs = jobByTitleArray.map((ele, i) => {
         jobsModel
           .find({ title: ele })
           .populate("jobPoster")
@@ -304,13 +362,15 @@ const getJobByTitle = (req, res) => {
             });
           });
       });
+      */
+     /*
     })
     .catch((error) => {
       res.status(404).json({
         data: error,
         message: "Error in getting the job",
       });
-    });
+    });*/
 };
 
 module.exports = {
